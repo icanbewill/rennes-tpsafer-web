@@ -1,0 +1,47 @@
+{% extends 'layouts/dashboard.html.twig' %}
+
+{% block title %}Categories {% endblock %}
+
+{% block body %}
+<div class="content-header row mb-2">
+    <div class="ml-2">
+        <a href="{{ path('app_category_new') }}" class="btn btn-primary mb-1">
+            Nouveau
+        </a>
+    </div>
+</div>
+<div class="content-body">
+    <div class="card">    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Libelle</th>
+                    <th>Date d'ajout</th>
+                    {# <th>Dernière modification</th> #}
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.libelle }}</td>
+                    <td>{{ category.createdAt ? category.createdAt|date('d-m-Y H:i:s') : '' }}</td>
+                    {# <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+                    <td>
+                        <a class="btn btn-success" href="{{ path('app_category_show', {'id': category.id}) }}">Voir</a>
+                        <a class="btn btn-warning" href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
+                        <a class="btn btn-danger" href="{{ path('app_category_delete', {'id': category.id}) }}">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

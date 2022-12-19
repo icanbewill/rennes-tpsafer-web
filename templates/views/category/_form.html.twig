@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+    <div class="form-group">
+        <label for="libelle">
+            Libellé     
+        </label>
+        {{ form_widget(form.libelle, {'attr': {'class': 'form-control'}}) }}
+        <div class="form-error text-danger">
+            {{ form_errors(form.libelle) }}
+        </div>
+    </div>
+    <button class="btn btn-primary">
+        {{ button_label|default('Enregistrer') }}
+    </button>
+{{ form_end(form) }}

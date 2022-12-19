@@ -1,0 +1,23 @@
+{% extends 'layouts/dashboard.html.twig' %}
+
+{% block title %}
+    Nouvelle catégorie
+{% endblock %}
+
+{% block body %}
+    <div class="content-header row mb-2">
+        <div class="">
+            <a href="{{ path('app_category_index') }}" class="btn btn-light mb-1">
+                Retour
+            </a>
+        </div>
+    </div>
+    <div class="content-body">
+        <div class="card">
+            <div class="card-body">
+                {{ include('views/category/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
