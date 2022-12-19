@@ -1,3 +1,6 @@
+# home:
+#    path: /
+#    controller: App\Controller\DashboardController::index
 dashboard:
    path: /dashboard
    controller: App\Controller\DashboardController::index
