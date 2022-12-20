@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -34,9 +36,15 @@ class Category
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="category_id")
+     */
+    private $properties;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->properties = new ArrayCollection();
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
@@ -85,6 +93,36 @@ class Category
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Property>
+     */
+    public function getProperties(): Collection
+    {
+        return $this->properties;
+    }
+
+    public function addProperty(Property $property): self
+    {
+        if (!$this->properties->contains($property)) {
+            $this->properties[] = $property;
+            $property->setCategoryId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProperty(Property $property): self
+    {
+        if ($this->properties->removeElement($property)) {
+            // set the owning side to null (unless already changed)
+            if ($property->getCategoryId() === $this) {
+                $property->setCategoryId(null);
+            }
+        }
 
         return $this;
     }

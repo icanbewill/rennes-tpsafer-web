@@ -1,0 +1,98 @@
+{{ form_start(form) }}
+{# {{ form_widget(form) }} #}
+<div class="row">
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="libelle"> Titre du bien</label>
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error text-danger">
+                {{ form_errors(form.title) }}
+            </div>
+        </div>
+    </div> 
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="libelle">Surface</label>
+            {{ form_widget(form.surface, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error text-danger">
+                {{ form_errors(form.surface) }}
+            </div>
+        </div>
+    </div> 
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="libelle">Type</label>
+            {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error text-danger">
+                {{ form_errors(form.type) }}
+            </div>
+        </div>
+    </div> 
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="libelle">Prix</label>
+            {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error text-danger">
+                {{ form_errors(form.price) }}
+            </div>
+        </div>
+    </div> 
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="libelle">Catégorie</label>
+            {{ form_widget(form.category_id, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error text-danger">
+                {{ form_errors(form.category_id) }}
+            </div>
+        </div>
+    </div> 
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="libelle">Ville</label>
+            {{ form_widget(form.country, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error text-danger">
+                {{ form_errors(form.country) }}
+            </div>
+        </div>
+    </div> 
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="libelle">Code postal</label>
+            {{ form_widget(form.postal_code, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error text-danger">
+                {{ form_errors(form.postal_code) }}
+            </div>
+        </div>
+    </div> 
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="libelle">Fichiers image</label>
+            {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error text-danger">
+                {{ form_errors(form.imageFile) }}
+            </div>
+        </div>
+    </div> 
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="libelle">Description</label>
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error text-danger">
+                {{ form_errors(form.description) }}
+            </div>
+        </div>
+    </div> 
+</div>
+<button class="btn btn-primary">
+    {{ button_label|default('Enregistrer') }}
+</button>
+{{ form_end(form) }}
+
+{# <div class="form-group">
+<label for="libelle">
+    Libellé     
+</label>
+</div>
+<button class="btn btn-primary">
+{{ button_label|default('Enregistrer') }}
+</button> #}
