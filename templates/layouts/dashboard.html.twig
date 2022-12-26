@@ -64,8 +64,18 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
-        
-            {% block body %}{% endblock %}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}" id="{{ label }}-alert" role="alert">
+                    <h4 class="alert-heading">{{ label }}</h4>
+                    <div class="alert-body">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    
+        {% block body %}{% endblock %}
 
         </div>
     </div>

@@ -63,7 +63,7 @@ class UserController extends AbstractController
             $this->em->flush();
 
             $this->addFlash(
-                'Félicitations',
+                'success',
                 'Enregistrement effectué avec succès!'
             );
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
@@ -104,7 +104,7 @@ class UserController extends AbstractController
             $this->em->flush();
 
             $this->addFlash(
-                'Félicitations',
+                'success',
                 'Enregistrement effectué avec succès!'
             );
         }

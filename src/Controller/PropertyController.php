@@ -71,11 +71,11 @@ class PropertyController extends AbstractController
                 }
 
                 $property->setImage($newFilename);
+                $this->addFlash(
+                    'success',
+                    'Enregistrement effectué avec succès!'
+                );
             }
-            $this->addFlash(
-                'Félicitations',
-                'Enregistrement effectué avec succès!'
-            );
 
             $property->setAddedBy($user);
             $this->em->persist($property);
@@ -133,11 +133,11 @@ class PropertyController extends AbstractController
                 }
 
                 $property->setImage($newFilename);
+                $this->addFlash(
+                    'success',
+                    'Enregistrement effectué avec succès!'
+                );
             }
-            $this->addFlash(
-                'Félicitations',
-                'Enregistrement effectué avec succès!'
-            );
             $this->em->persist($property);
             $this->em->flush();
             return $this->redirectToRoute('app_property_index', [], Response::HTTP_SEE_OTHER);
