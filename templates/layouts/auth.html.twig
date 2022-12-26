@@ -5,6 +5,8 @@
         <title>
             {% block title %}
                 Welcome!
+                                            
+                            
             {% endblock %}
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,13 +20,63 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-        <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/vendors.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-extended.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/colors.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/components.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themes/dark-layout.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themes/bordered-layout.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themes/semi-dark-layout.css') }}">
+        <!-- BEGIN: Page CSS-->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/core/menu/menu-types/vertical-menu.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plugins/forms/form-validation.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages/page-auth.css') }}">
     </head>
-    <body class="authentication-bg" style="background-image: url({{ asset('assets/images/auth-bg.png')}})">
+
+    <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <div class="auth-wrapper auth-v1 px-2">
+                    <div class="auth-inner py-2">
+                        {% block body %}{% endblock %}
+                       
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{ asset('assets/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="{{ asset('assets/js/core/app-menu.js') }}"></script>
+    <script src="{{ asset('assets/js/core/app.js') }}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{{ asset('assets/js/scripts/pages/page-auth-login.js') }}"></script>
+    <!-- END: Page JS-->
+
+</body>
+
+    {# <body class="authentication-bg" style="background-image: url({{ asset('assets/images/auth-bg.png') }})">
         <div class="account-pages mt-5 mb-4 pt-sm-5">
             <div class="container">
                 <div class="row">
@@ -41,15 +93,19 @@
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card">
                             <div class="card-body p-4">
-                                {% block body %}{% endblock %}
+                               
                             </div>
                         </div>
                         <div class="mt-5 text-center">
                             <p>
                                 © 2022 DAFER. Crafted with        
+                                                                                                                                
+                                                                                                
                                                                 
                                 <i class="mdi mdi-heart text-danger"></i>
                                 by Will & Mael                
+                                                                                                                            
+                                                                                            
                                                             
                             </p>
                         </div>
@@ -67,5 +123,5 @@
         <script src="{{ asset('assets/libs/jquery.counterup/jquery.counterup.min.js') }}"></script>
         <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
         <script src="{{ asset('assets/js/app.js') }}"></script>
-    </body>
+    </body> #}
 </html>

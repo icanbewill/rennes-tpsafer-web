@@ -1,0 +1,22 @@
+{% extends 'layouts/auth.html.twig' %}
+
+{% block title %}modifier votre mot de passe{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    <h1>Modifier votre mot de passe</h1>
+
+    {{ form_start(requestForm) }}
+        {# {{ form_row(requestForm.email) }} #}
+        <div>
+            <small class="mb-2">
+                Entrer votre adresse mail, un mail de renouvellement vous sera envoyé
+            </small>
+        </div>
+        {{ form_widget(requestForm.email, {'attr': {'class': 'form-control' }}  ) }}
+
+        <button class="btn btn-primary mt-2">Envoyer le mail</button>
+    {{ form_end(requestForm) }}
+{% endblock %}
