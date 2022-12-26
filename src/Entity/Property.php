@@ -3,8 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\PropertyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -51,16 +52,9 @@ class Property
     private $postal_code;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
-
-    /**
-     * @Vich\UploadableField(mapping="property_images", fileNameProperty="image")
-     * @var File
-     */
-    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -87,6 +81,18 @@ class Property
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Gallery::class, mappedBy="property_id")
+     */
+    private $galleries;
+    
+
+    public function __construct()
+    {
+        $this->galleries = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -213,19 +219,6 @@ class Property
         return $this;
     }
 
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-        if ($image) {
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
     public function setImage($image)
     {
         $this->image = $image;
@@ -244,6 +237,36 @@ class Property
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gallery>
+     */
+    public function getGalleries(): Collection
+    {
+        return $this->galleries;
+    }
+
+    public function addGallery(Gallery $gallery): self
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries[] = $gallery;
+            $gallery->setPropertyId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): self
+    {
+        if ($this->galleries->removeElement($gallery)) {
+            // set the owning side to null (unless already changed)
+            if ($gallery->getPropertyId() === $this) {
+                $gallery->setPropertyId(null);
+            }
+        }
 
         return $this;
     }

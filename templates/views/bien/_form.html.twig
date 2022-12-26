@@ -1,7 +1,7 @@
 {{ form_start(form) }}
 {# {{ form_widget(form) }} #}
 <div class="row">
-    <div class="col-12 mb-2">
+    {# <div class="col-12 mb-2">
         <div class="border rounded p-2">
             <h4 class="mb-1">
                 Image de Couverture
@@ -21,8 +21,6 @@
                     <div class="d-inline-block">
                         <div class="form-group mb-0">
                             <div class="custom-file">
-                                {# <input type="file" class="custom-file-input" name="image" id="blogCustomFile"
-                                    accept="image/*" /> #}
                                 {{ form_widget(form.imageFile, {'attr': {'class': 'custom-file-input' }}  ) }}
 
                                 <label class="custom-file-label" for="blogCustomFile">
@@ -34,8 +32,17 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> #}
 
+    <div class="col-md-6 col-12">
+        <div class="form-group">
+            <label for="libelle">
+                Image du bien
+            </label>
+            {{ form_widget(form.imageFile, {'attr': {'class': 'form-control' }} ) }}
+
+        </div>
+    </div>
     <div class="col-md-6 col-12">
         <div class="form-group">
             <label for="libelle">

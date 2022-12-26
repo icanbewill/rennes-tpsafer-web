@@ -1,58 +1,91 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/dashboard.html.twig' %}
 
-{% block title %}Property{% endblock %}
+{% block title %}Bien{% endblock %}
 
 {% block body %}
-    <h1>Property</h1>
+<h1>Détails du bien</h1>
+<div class="content-header row mb-2">
+    <div class="d-flex">
+        <a href="{{ path('app_property_index') }}" class="mx-2 btn btn-sm btn-secondary mb-1">
+            Retour
+        </a>
+    </div>
+</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ property.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ property.title }}</td>
-            </tr>
-            <tr>
-                <th>Surface</th>
-                <td>{{ property.surface }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ property.price }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ property.description }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ property.country }}</td>
-            </tr>
-            <tr>
-                <th>Postal_code</th>
-                <td>{{ property.postalCode }}</td>
-            </tr>
-            <tr>
-                <th>String</th>
-                <td>{{ property.string }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ property.type }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ property.createdAt ? property.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="">
+    <div class="row my-2">
+        <div class="col-12 col-sm-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+            <div class="d-flex align-items-center justify-content-center">
+                <img style="max-width: 500px" src="{{ asset('uploads/property_images/' ~ property.image) }}"
+                    class="img-fluid product-img" alt="{{ property.title }}" />
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 ml-1">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <h4 class="text-uppercase font-weight-bolder">{{ property.title }}</h4>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>SURFACE</span>
+                    <span class="font-weight-bolder text-uppercase ml-2">{{ property.surface }}</span>
+                </li>
 
-    <a href="{{ path('app_property_index') }}">back to list</a>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>TYPE</span>
+                    <span class="font-weight-bolder text-uppercase ml-2">{{ property.type }}</span>
+                </li>
 
-    <a href="{{ path('app_property_edit', {'id': property.id}) }}">edit</a>
 
-    {{ include('property/_delete_form.html.twig') }}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>CATEGORIE</span>
+                    <a href="{{ path('app_category_show', {'id': category.id}) }}"
+                        class="font-weight-bolder text-uppercase ml-2">{{ category.libelle }}</a>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>PRIX</span>
+                    <span class="font-weight-bolder text-uppercase ml-2">{{ property.price | format_currency('EUR') }}</span>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>VILLE</span>
+                    <span class="font-weight-bolder text-uppercase ml-2">{{ property.country }}</span>
+                </li>
+
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>CODE POSTAL</span>
+                    <span class="font-weight-bolder text-uppercase ml-2">{{ property.postalCode }}</span>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>DATE D4AJOUT</span>
+                    <span class="font-weight-bolder text-uppercase ml-2">
+                    {# {{ property.createdAt ? property.createdAt|date('d-m-Y H:i:s') : '' }}</span> #}
+                    {{ property.createdAt ? property.createdAt|date('d-m-Y') : '' }}</span>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>DESCRIPTION</span>
+                    <p style="line-break: anywhere;">{{ property.description }}</p>
+                </li>
+
+            </ul>
+            <ul class="list-group">
+                {# <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>Ajouté par</span>
+                    <span class="font-weight-bolder text-uppercase ml-2">{{ property.type }}</span>
+                </li> #}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>OPTIONS</span>
+                    <div class="d-flex flex-column flex-sm-row pt-1">
+                        <a class="btn btn-warning mr-2" href="{{ path('app_property_edit', {'id': property.id}) }}">Modifier</a>
+                        {{ include('views/property/_delete_form.html.twig') }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

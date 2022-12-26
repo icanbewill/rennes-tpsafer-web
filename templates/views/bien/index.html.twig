@@ -1,0 +1,55 @@
+{% extends 'layouts/dashboard.html.twig' %}
+
+{% block title %}Biens{% endblock %}
+
+{% block body %}
+    <div class="content-header row mb-2">
+        <div class="ml-2">
+            <a href="{{ path('app_bien_new') }}" class="btn btn-primary mb-1">
+                Nouveau
+            </a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Surface</th>
+                <th>Prix</th>
+                <th>Description</th>
+                {# <th>Country</th>
+                <th>Postal_code</th>
+                <th>String</th> #}
+                <th>Type</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bien in biens %}
+            <tr>
+                <td>{{ bien.id }}</td>
+                <td>{{ bien.title }}</td>
+                <td>{{ bien.surface }}</td>
+                <td>{{ bien.price }}</td>
+                <td>{{ bien.description }}</td>
+                {# <td>{{ bien.country }}</td>
+                <td>{{ bien.postalCode }}</td>
+                <td>{{ bien.string }}</td> #}
+                <td>{{ bien.type }}</td>
+                <td>{{ bien.createdAt ? bien.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_bien_show', {'id': bien.id}) }}">show</a>
+                    <a href="{{ path('app_bien_edit', {'id': bien.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

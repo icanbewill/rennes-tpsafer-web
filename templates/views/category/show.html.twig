@@ -20,17 +20,24 @@
     {% endblock %}
      #}
 
-{% block title %}Categorie{% endblock %}
+{% block title %}
+    Categorie
+{% endblock %}
 
 {% block body %}
-    <h1>Categorie</h1>
-        <div class="content-header row mb-2">
+    <h1>
+        Categorie
+    </h1>
+    <div class="content-header row mb-2">
         <div class="d-flex">
             <a href="{{ path('app_category_index') }}" class="mx-2 btn btn-secondary mb-1">
                 Retour                 
+                            
             </a>
-            
-            <a class="mr-2 btn btn-warning mb-1" href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
+
+            <a class="mr-2 btn btn-warning mb-1" href="{{ path('app_category_edit', {'id': category.id}) }}">
+                Modifier
+            </a>
 
             {{ include('views/category/_delete_form.html.twig') }}
         </div>
@@ -39,20 +46,36 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
+                <th>
+                    Id
+                </th>
+                <td>
+                    {{ category.id }}
+                </td>
             </tr>
             <tr>
-                <th>Libelle</th>
-                <td>{{ category.libelle }}</td>
+                <th>
+                    Libelle
+                </th>
+                <td>
+                    {{ category.libelle }}
+                </td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
-                <td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>
+                    CreatedAt
+                </th>
+                <td>
+                    {{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}
+                </td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
-                <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>
+                    UpdatedAt
+                </th>
+                <td>
+                    {{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}
+                </td>
             </tr>
         </tbody>
     </table>
