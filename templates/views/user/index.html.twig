@@ -1,0 +1,48 @@
+{% extends 'layouts/dashboard.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block body %}
+    <h3>Utilisateurs</h3>
+    <div class="content-header row my-2">
+        <div class="ml-2">
+            <a href="{{ path('app_user_new') }}" class="btn btn-primary mb-1">
+                Nouveau
+            </a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Email</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Roles</th>
+                <th>Ajouté le</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('d-m-Y H:i:s') : '' }}</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
+                    <a class="btn btn-sm btn-warning" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -39,7 +39,10 @@ class CategoryController extends AbstractController
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        $this->addFlash(
+            'Félicitations',
+            'Enregistrement effectué avec succès!'
+        );
         return $this->renderForm('views/category/new.html.twig', [
             'category' => $category,
             'form' => $form,
@@ -69,7 +72,11 @@ class CategoryController extends AbstractController
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        $this->addFlash(
+            'Félicitations',
+            'Enregistrement effectué avec succès!'
+        );
+        
         return $this->renderForm('views/category/edit.html.twig', [
             'category' => $category,
             'form' => $form,

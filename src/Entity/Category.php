@@ -37,12 +37,12 @@ class Category
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="category_id")
+     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="category_id", cascade={"remove"})
      */
     private $properties;
 
     /**
-     * @ORM\OneToMany(targetEntity=Bien::class, mappedBy="category_id")
+     * @ORM\OneToMany(targetEntity=Bien::class, mappedBy="category_id", cascade={"remove"})
      */
     private $biens;
 

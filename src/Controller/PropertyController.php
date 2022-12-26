@@ -60,7 +60,7 @@ class PropertyController extends AbstractController
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
-
+                // telechargement de fichier
                 try {
                     $uploadedFile->move(
                         $destination,
@@ -72,6 +72,10 @@ class PropertyController extends AbstractController
 
                 $property->setImage($newFilename);
             }
+            $this->addFlash(
+                'Félicitations',
+                'Enregistrement effectué avec succès!'
+            );
 
             $property->setAddedBy($user);
             $this->em->persist($property);
@@ -118,7 +122,7 @@ class PropertyController extends AbstractController
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
-
+                // telechargement de fichier
                 try {
                     $uploadedFile->move(
                         $destination,
@@ -130,6 +134,10 @@ class PropertyController extends AbstractController
 
                 $property->setImage($newFilename);
             }
+            $this->addFlash(
+                'Félicitations',
+                'Enregistrement effectué avec succès!'
+            );
             $this->em->persist($property);
             $this->em->flush();
             return $this->redirectToRoute('app_property_index', [], Response::HTTP_SEE_OTHER);

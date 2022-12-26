@@ -1,0 +1,80 @@
+{% extends 'layouts/dashboard.html.twig' %}
+
+{% block title %}
+    User
+    
+{% endblock %}
+
+{% block body %}
+    <h3>
+        Détails de l'utilisateur
+            
+    </h3>
+    <div class="content-header row mb-2">
+        <div class="d-flex">
+            <a href="{{ path('app_user_index') }}" class="mx-2 btn btn-sm btn-secondary mb-1">
+                Retour
+                                            
+                            
+            </a>
+        </div>
+    </div>
+
+    <ul class="list-group">
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+                Email
+                                
+            </span>
+            <span class="font-weight-bolder text-uppercase ml-2">
+                {{ user.email }}
+            </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+                Roles
+                                
+            </span>
+            <span class="font-weight-bolder text-uppercase ml-2">
+                {{ user.roles ? user.roles|json_encode : '' }}
+            </span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+                Prénom
+                                
+            </span>
+            <span class="font-weight-bolder text-uppercase ml-2">
+                {{ user.firstname }}
+            </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+                Nom
+                                
+            </span>
+            <span class="font-weight-bolder text-uppercase ml-2">
+                {{ user.lastname }}
+            </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+                Ajouté le
+                                
+            </span>
+            <span class="font-weight-bolder text-uppercase ml-2">
+                {{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}
+            </span>
+        </li>
+    </ul>
+
+    <div class="d-flex flex-column flex-sm-row pt-1">
+        <a class="btn btn-sm btn-warning mr-2" href="{{ path('app_user_edit', {'id': user.id}) }}">
+            Modifier
+                    
+        </a>
+        {{ include('views/user/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

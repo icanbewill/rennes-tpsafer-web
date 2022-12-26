@@ -1,0 +1,26 @@
+{% extends 'layouts/dashboard.html.twig' %}
+
+{% block title %}
+    New User
+    
+{% endblock %}
+
+{% block body %}
+    <h1>
+        Ajouter un admin
+            
+    </h1>
+    <div class="content-header row mb-2">
+        <div class="">
+            <a href="{{ path('app_user_index') }}" class="btn btn-sm btn-light mb-1">
+                Retour            
+                        
+            </a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            {{ include('views/user/_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

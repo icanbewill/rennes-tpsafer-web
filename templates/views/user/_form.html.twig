@@ -1,0 +1,54 @@
+{{ form_start(form) }}
+    {# {{ form_widget(form) }} #}
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label for="libelle">
+                    Prénom
+                </label>
+                {{ form_widget(form.firstname, {'attr': {'class': 'form-control' }} ) }}
+
+                <div class="form-error text-danger">
+                    {{ form_errors(form.firstname) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label for="libelle">
+                    Nom
+                </label>
+                {{ form_widget(form.lastname, {'attr': {'class': 'form-control' }} ) }}
+
+                <div class="form-error text-danger">
+                    {{ form_errors(form.lastname) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label for="libelle">
+                    Email
+                </label>
+                {{ form_widget(form.email, {'attr': {'class': 'form-control' }} ) }}
+
+                <div class="form-error text-danger">
+                    {{ form_errors(form.email) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label for="libelle">
+                    Mot de passe
+                </label>
+                {{ form_widget(form.password, {'attr': {'class': 'form-control' }} ) }}
+
+                <div class="form-error text-danger">
+                    {{ form_errors(form.password) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

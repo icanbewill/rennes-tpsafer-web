@@ -3,7 +3,8 @@
 {% block title %}Biens{% endblock %}
 
 {% block body %}
-    <div class="content-header row mb-2">
+    <h3>Biens</h3>
+    <div class="content-header row my-2">
         <div class="ml-2">
             <a href="{{ path('app_property_new') }}" class="btn btn-primary mb-1">
                 Nouveau
@@ -14,35 +15,29 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>#</th>
                 <th>Titre</th>
                 <th>Surface</th>
                 <th>Prix</th>
-                <th>Description</th>
-                {# <th>Country</th>
-                <th>Postal_code</th>
-                <th>String</th> #}
                 <th>Type</th>
-                <th>CreatedAt</th>
+                <th>Ajouté le</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for property in properties %}
             <tr>
-                <td>{{ property.id }}</td>
+                <td>{{ loop.index }}</td>
                 <td>{{ property.title }}</td>
-                <td>{{ property.surface }}</td>
-                <td>{{ property.price }}</td>
-                <td>{{ property.description }}</td>
-                {# <td>{{ property.country }}</td>
-                <td>{{ property.postalCode }}</td>
-                <td>{{ property.string }}</td> #}
+                <td>{{ property.surface }} m²</td>
+                <td>{{ property.price | format_currency('EUR') }}</td>
                 <td>{{ property.type }}</td>
-                <td>{{ property.createdAt ? property.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ property.createdAt ? property.createdAt|date('d-m-Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_property_show', {'id': property.id}) }}">show</a>
-                    <a href="{{ path('app_property_edit', {'id': property.id}) }}">edit</a>
+                    
+                    <a class="btn btn-sm btn-success" href="{{ path('app_property_show', {'id': property.id}) }}">Voir</a>
+                    <a class="btn btn-sm btn-warning" href="{{ path('app_property_edit', {'id': property.id}) }}">Modifier</a>
+                    <a class="btn btn-sm btn-danger" href="{{ path('app_property_delete', {'id': property.id}) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}

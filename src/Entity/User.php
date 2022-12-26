@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -13,6 +16,26 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addConstraint(new UniqueEntity([
+            'fields' => ['email'],
+            'errorPath' => 'libelle',
+            'message' => 'Cette adresse mail existe déja.',
+        ]));
+
+        $metadata->addPropertyConstraint('password', new Assert\Length([
+            'min' => 8,
+            // 'message' => 'Le mot de passe doit contenir au moins 8 caractères',
+        ])
+        );
+
+        // $metadata->addGetterConstraint('password', new Assert\IsTrue([
+        //     'message' => 'Le mot de passe ne peut pas être égal au nom ou prénom',
+        // ]));
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -56,6 +79,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $updated_at;
 
+    public function isPasswordSafe()
+{
+    return ($this->firstname !== $this->password) && ($this->lastname !== $this->password);
+}
+
     public function getId(): ?int
     {
         return $this->id;
@@ -81,6 +109,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
+    }
+
+    
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     /**
