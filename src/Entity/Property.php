@@ -86,12 +86,18 @@ class Property
      * @ORM\OneToMany(targetEntity=Gallery::class, mappedBy="property_id")
      */
     private $galleries;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Favourite::class, mappedBy="bien_id")
+     */
+    private $favourites;
     
 
     public function __construct()
     {
         $this->galleries = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
+        $this->favourites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -265,6 +271,36 @@ class Property
             // set the owning side to null (unless already changed)
             if ($gallery->getPropertyId() === $this) {
                 $gallery->setPropertyId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favourite>
+     */
+    public function getFavourites(): Collection
+    {
+        return $this->favourites;
+    }
+
+    public function addFavourite(Favourite $favourite): self
+    {
+        if (!$this->favourites->contains($favourite)) {
+            $this->favourites[] = $favourite;
+            $favourite->setBienId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavourite(Favourite $favourite): self
+    {
+        if ($this->favourites->removeElement($favourite)) {
+            // set the owning side to null (unless already changed)
+            if ($favourite->getBienId() === $this) {
+                $favourite->setBienId(null);
             }
         }
 
