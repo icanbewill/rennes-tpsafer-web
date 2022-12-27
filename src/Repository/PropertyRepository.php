@@ -39,6 +39,21 @@ class PropertyRepository extends ServiceEntityRepository
         }
     }
 
+   /**
+    * @return Property[] Returns a random array
+    */
+   public function getRandom(): array
+   {
+       return $this->createQueryBuilder('p')
+        //    ->andWhere('p.exampleField = :val')
+        //    ->setParameter('val', $value)
+           ->orderBy('RAND()')
+           ->setMaxResults(3)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
 //    /**
 //     * @return Property[] Returns an array of Property objects
 //     */
