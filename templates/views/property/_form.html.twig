@@ -126,16 +126,20 @@
             </div>
         </div>
     </div>
-    {# <div class="col-md-6 col-12">
+    <div class="col-md-6 col-12">
         <div class="form-group">
-            <label for="libelle">Fichiers image</label>
-            {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+            <label for="libelle">
+                Porteur
+            </label>
+            {{ form_widget(form.owner, {'attr': {'class': 'form-control' }}
+            ) }}
+
             <div class="form-error text-danger">
-                {{ form_errors(form.imageFile) }}
+                {{ form_errors(form.owner) }}
             </div>
         </div>
-    </div> #}
-    <div class="col-md-6 col-12">
+    </div>
+    <div class="col-md-12 col-12">
         <div class="form-group">
             <label for="libelle">
                 Description

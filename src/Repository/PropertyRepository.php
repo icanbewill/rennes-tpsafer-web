@@ -39,43 +39,54 @@ class PropertyRepository extends ServiceEntityRepository
         }
     }
 
-   /**
-    * @return Property[] Returns a random array
-    */
-   public function getRandom(): array
-   {
-       return $this->createQueryBuilder('p')
-        //    ->andWhere('p.exampleField = :val')
-        //    ->setParameter('val', $value)
-           ->orderBy('RAND()')
-           ->setMaxResults(3)
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+    /**
+     * @return Property[] Returns a random array
+     */
+    public function getRandom(): array
+    {
 
-//    /**
-//     * @return Property[] Returns an array of Property objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+        $quantity = 3;
+        $totalRowsTable = $this->createQueryBuilder('a')->select('count(a.id)')->getQuery()->getSingleScalarResult();
+        $random_ids = $this->UniqueRandomNumbersWithinRange(1, $totalRowsTable, $quantity);
 
-//    public function findOneBySomeField($value): ?Property
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return $this->createQueryBuilder('p')
+            ->where('p.id in (:ids)')
+            ->setParameter('ids', $random_ids)
+            // ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function UniqueRandomNumbersWithinRange($min, $max, $quantity)
+    {
+        $numbers = range($min, $max);
+        shuffle($numbers);
+        return array_slice($numbers, 0, $quantity);
+    }
+
+
+    //    /**
+    //     * @return Property[] Returns an array of Property objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('p')
+    //            ->andWhere('p.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('p.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Property
+    //    {
+    //        return $this->createQueryBuilder('p')
+    //            ->andWhere('p.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

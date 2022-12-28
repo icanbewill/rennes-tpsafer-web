@@ -3,21 +3,24 @@
         <div class="sec-title centred">
             <h5>
                 Biens
-
-
-
+                
+                
+                
+                            
             </h5>
             <h2>
                 Quelques biens
-
-
-
+                
+                
+                
+                            
             </h2>
             <p>
                 Retrouvez ci-dessous quelques biens, et amusez-vous.
-
-
-
+                
+                
+                
+                            
             </p>
         </div>
         <div class="row clearfix">
@@ -27,106 +30,76 @@
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
-                                    <img src="{{ asset('front/images/feature/feature-1.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="lower-content">
-                                <div class="author-info clearfix">
-                                    <div class="author pull-left">
-                                        <figure class="author-thumb">
-                                            <img src="{{ asset('front/images/feature/author-1.jpg') }}" alt="">
-                                        </figure>
-                                        <h6>
-                                            Michael Bean
-
-
-
-                                        </h6>
-                                    </div>
-                                    <div class="buy-btn pull-right">
-                                        <a href="property-details.html">
-                                           {{item.type}}
-                                        </a>
-                                    </div>
+                                    <img src="{{ asset('uploads/property_images/' ~ item.image) }}" alt=""></figure>
+                                    <span class="category">
+                                        {# {{ item.getCategoryId().libelle }} #}
+                                    </span>
                                 </div>
-                                <div class="title-text">
-                                    <h4>
-                                        <a href="property-details.html">
-                                            {{item.title}}
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div class="price-box clearfix">
-                                    <div class="price-info pull-left">
-                                        <h6>
-                                            Start From
-
-
-
-                                        </h6>
-                                        <h4>
-                                            $30,000.00
-
-
-
-                                        </h4>
-                                    </div>
-                                    <ul class="other-option pull-right clearfix">
-                                        <li>
-                                            <a href="property-details.html">
+                                <div class="lower-content">
+                                    <div class="author-info clearfix">
+                                        <div class="author pull-left">
+                                            <figure class="author-thumb">
+                                                <img src="{{ asset('front/images/feature/author-1.jpg') }}" alt=""></figure>
+                                                <h6>
+                                                    {{ item.owner }}
+                                                </h6>
+                                            </div>
+                                            <div class="buy-btn pull-right">
+                                                <a href="property-details.html">
+                                                    {{ item.type }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="title-text">
+                                            <h4>
+                                                <a href="property-details.html">
+                                                    {{ item.title }}
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div class="price-box clearfix">
+                                            <div class="price-info pull-left">
+                                                <h6>
+                                                    Start From
+                                                                                        
+                                                </h6>
+                                                <h4>
+                                                    {{ item.price | format_currency('EUR') }}
+                                                </h4>
+                                            </div>
+                                            <ul class="other-option pull-right clearfix">
+                                                <li>
+                                                    <a href="property-details.html">
+                                                        <i class="icon-13"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <p>
+                                            {{ item. description }}
+                                        </p>
+                                        <ul class="more-details clearfix">
+                                            <li>
+                                                <i class="icon-10"></i>
+                                                {{ item.country }}
+                                            </li>
+                                            <li>
                                                 <i class="icon-12"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="property-details.html">
-                                                <i class="icon-13"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing sed.
-
-
-
-                                </p>
-                                <ul class="more-details clearfix">
-                                    <li>
-                                        <i class="icon-14"></i>
-                                        3 Beds
-
-
-
-                                    </li>
-                                    <li>
-                                        <i class="icon-15"></i>
-                                        2 Baths
-
-
-
-                                    </li>
-                                    <li>
-                                        <i class="icon-16"></i>
-                                        600 Sq Ft
-
-
-
-                                    </li>
-                                </ul>
-                                <div class="btn-box">
-                                    <a href="property-details.html" class="theme-btn btn-two">
-                                        See
-                                        Details
-
-
-
-                                    </a>
+                                                {{ item.postal_code ? item.postal_code : '' }}
+                                            </li>
+                                            <li>
+                                                <i class="icon-16"></i>
+                                                {{ item.surface }}
+                                                m²
+                                                                                
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>       
-            {% endfor %}
-        </div>
-    </div>
-</section>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        

@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Repository\CategoryRepository;
 use App\Repository\PropertyRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 class HomeController extends AbstractController
 {
@@ -25,31 +27,19 @@ class HomeController extends AbstractController
      */
     public function index(CategoryRepository $categoryRepository): Response
     {
+        $sql = 'SELECT * from property ORDER BY RAND() LIMIT 3';
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('App\Entity\Property');
-        $quantity = 3; // Nombre d'élements à sélectionner
-        $totalRowsTable = $repo->createQueryBuilder('a')->select('count(a.id)')->getQuery()->getSingleScalarResult(); // This will be in this case 10 because i have 10 records on this table
-        // dd($totalRowsTable);
-        $random_ids = $this->UniqueRandomNumbersWithinRange(1, $totalRowsTable, $quantity);
-        // dd($random_ids);
-        $properties = $repo->createQueryBuilder('a')
-            ->where('a.id IN (:ids)')
-            ->setParameter('ids', $random_ids)
-            ->setMaxResults(3)
-            ->getQuery()
-            ->getResult();
-        // dd($properties);
+        $statement = $em->getConnection()->prepare($sql);
+        $result = $statement->execute()->fetchAll();
+
+        foreach ($result as $key => $value) {
+            $properties[] = $value;
+        }
+
         return $this->render('landing/index.html.twig', [
             'properties' => $properties,
             'categories' => $categoryRepository->findAll(),
         ]);
-    }
-
-    public function UniqueRandomNumbersWithinRange($min, $max, $quantity)
-    {
-        $numbers = range($min, $max);
-        shuffle($numbers);
-        return array_slice($numbers, 0, $quantity);
     }
 
     /**

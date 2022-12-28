@@ -22,9 +22,8 @@ class PropertyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, [
-                'help' => 'Choose something catchy!'
-            ])
+            ->add('title', TextType::class)
+            ->add('owner', TextType::class)
             ->add('surface', IntegerType::class, [
                 'attr' => [
                     'min' => 0
