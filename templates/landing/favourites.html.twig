@@ -192,15 +192,15 @@ Mes favoris
                     console.debug(data)
                     this.clearFavs();
                     // if (data.responsemsg == "SUCCESSFUL") {
-                    v.showAlert('FAvoris',
-                        "Envoi effectué avec succès",
-                        'success')
+                    v.showAlert(
+                        'success', 'FAvoris',
+                        "Envoi effectué avec succès")
                     //     v.updateOrder()
                     //     v.waitForTime(5000)
                     //     v.clearFavs()
                     //     window.location.replace(localStorage.getItem('url'));
                     // } else {
-                    //     v.showAlert('Paiement',
+                    //     v.showToast('Paiement',
                     //         "Désolé, le paiement n'a pas abouti ! Pour reprendre, veuillez recharger cette page. ",
                     //         'warning')
                     //     v.isLoading = false
