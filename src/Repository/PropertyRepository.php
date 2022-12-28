@@ -79,6 +79,17 @@ class PropertyRepository extends ServiceEntityRepository
     //            ->getResult()
     //        ;
     //    }
+       public function getSome(): array
+       {
+           return $this->createQueryBuilder('p')
+            //    ->andWhere('p.exampleField = :val')
+            //    ->setParameter('val', $value)
+               ->orderBy('p.id', 'ASC')
+               ->setMaxResults(5)
+               ->getQuery()
+               ->getResult()
+           ;
+       }
 
     //    public function findOneBySomeField($value): ?Property
     //    {
