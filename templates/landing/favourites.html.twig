@@ -178,36 +178,38 @@ Mes favoris
 
             sendByMail() {
                 var v = this;
+                this.isLoading = true;
                 // try {
-                    fetch("{{ path('app_favourite_mail') }}", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            "X-Requested-With": "XMLHttpRequest"
-                        },
-                        // 'token=' + el.getAttribute('data-token'),
-                        body: JSON.stringify(this.favItems)
-                    }).then(res => res.json()).then(data => {
-                        console.debug(data)
-                        // if (data.responsemsg == "SUCCESSFUL") {
-                        //     v.showAlert('Paiement',
-                        //         "Votre paiement est accepté ! Validation de la commande en cours",
-                        //         'success')
-                        //     v.updateOrder()
-                        //     v.waitForTime(5000)
-                        //     v.clearFavs()
-                        //     window.location.replace(localStorage.getItem('url'));
-                        // } else {
-                        //     v.showAlert('Paiement',
-                        //         "Désolé, le paiement n'a pas abouti ! Pour reprendre, veuillez recharger cette page. ",
-                        //         'warning')
-                        //     v.isLoading = false
-                        // }
-                    }).catch((err) => {
-                        console.debug(err)
-                        // this.isLoading = false
-                        // this.showToast('error', 'Envoi non effectué !')
-                    })
+                fetch("{{ path('app_favourite_mail') }}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "X-Requested-With": "XMLHttpRequest"
+                    },
+                    // 'token=' + el.getAttribute('data-token'),
+                    body: JSON.stringify(this.favItems)
+                }).then(res => res.json()).then(data => {
+                    console.debug(data)
+                    this.clearFavs();
+                    // if (data.responsemsg == "SUCCESSFUL") {
+                    v.showAlert('FAvoris',
+                        "Envoi effectué avec succès",
+                        'success')
+                    //     v.updateOrder()
+                    //     v.waitForTime(5000)
+                    //     v.clearFavs()
+                    //     window.location.replace(localStorage.getItem('url'));
+                    // } else {
+                    //     v.showAlert('Paiement',
+                    //         "Désolé, le paiement n'a pas abouti ! Pour reprendre, veuillez recharger cette page. ",
+                    //         'warning')
+                    //     v.isLoading = false
+                    // }
+                }).catch((err) => {
+                    console.debug(err)
+                    // this.isLoading = false
+                    // this.showToast('error', 'Envoi non effectué !')
+                })
                 // } catch (error) {
                 // }
             },
