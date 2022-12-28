@@ -1,0 +1,140 @@
+{% extends 'layouts/landing.html.twig' %}
+{% block title %}
+Liste des biens
+
+{% endblock %}
+{% block body %}
+<section x-data="handler()" class="feature-section alternate-2 sec-pad">
+    <div class="auto-container">
+        <div class="sec-title centred">
+            <h5>
+                Biens
+
+            </h5>
+            {% if category %}
+            <h2 class="text-uppercase">
+                {{category.libelle}}
+            </h2>
+            {% endif %}
+            <p>
+                Liste des biens
+            </p>
+        </div>
+        <div class="row clearfix">
+            {% for item in properties %}
+            <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+                <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <img src="{{ asset('uploads/property_images/' ~ item.image) }}" alt="">
+                            </figure>
+                            <span class="category">{{category ? category.libelle : item.getCategoryId().libelle}}</span>
+                        </div>
+                        <div class="lower-content">
+                            <div class="author-info clearfix">
+                                <div class="author pull-left">
+                                    <figure class="author-thumb">
+                                        <img src="{{ asset('front/images/feature/author-1.jpg') }}" alt="">
+                                    </figure>
+                                    <h6>
+                                        {{item.owner ? item.owner : 'John Doe'}}
+                                    </h6>
+                                </div>
+                                <div class="buy-btn pull-right">
+                                    <a href="property-details.html">
+                                        {{ item.type }}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="title-text">
+                                <h4>
+                                    <a href="property-details.html">
+                                        {{ item.title }}
+                                    </a>
+                                </h4>
+                            </div>
+                            <div class="price-box clearfix">
+                                <div class="price-info pull-left">
+                                    <h6>
+                                        Prix
+                                    </h6>
+                                    <h4>
+                                        {{item.price}} €
+                                    </h4>
+                                </div>
+                                <ul class="other-option pull-right clearfix">
+                                    <li>
+                                        {% set entryInfo = {
+                                            id: item.id,
+                                            type: item.type,
+                                            owner: item.owner,
+                                            image: asset('uploads/property_images/' ~ item.image),
+                                            category: category ? category.libelle : item.getCategoryId().libelle,
+                                            title: item.title,
+                                            price: item.price,
+                                            country: item.country,
+                                            postalCode: item.postalCode,
+                                            surface: item.surface,
+                                        } %}
+                                        <a x-on:click="addTofav({{ entryInfo|json_encode }})">
+                                            <i class="icon-13"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p>
+                                {{item.description}}
+                            </p>
+                            <ul class="more-details clearfix">
+                                <li>
+                                    <i class="icon-10"></i>
+                                    {{item.country}}
+                                </li>
+                                <li>
+                                    <i class="icon-12"></i>
+                                    {{item.postalCode}}
+                                </li>
+                                <li>
+                                    <i class="icon-16"></i>
+                                    {{item.surface}} m²
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+    function handler() {
+        return {
+            addTofav(item) {
+                // console.debug(item)
+                let favourites = [];
+                if (localStorage.getItem('favourites')) {
+                    favourites = JSON.parse(localStorage.getItem('favourites'));
+                }
+                favourites.push(item);
+                localStorage.setItem('favourites', JSON.stringify(favourites));
+
+                // const span = document.getElementById('favourites-item-count');
+                // const span2 = document.getElementById('favourites-item-count2');
+                // let lastV = span.innerText
+                // span.innerHTML = parseInt(lastV) + 1
+                // span2.innerHTML = parseInt(lastV) + 1
+
+                toastr['success']('Produit ajouté aux favoris 🛒', 'FAVORIS', {
+                    closeButton: true,
+                    tapToDismiss: true,
+                    progressBar: true,
+                    positionClass: "toast-bottom-left",
+                });
+            },
+        }
+    }
+</script>
+{% endblock %}

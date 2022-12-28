@@ -1,0 +1,27 @@
+<section class="category-section centred">
+    <div class="auto-container">
+        <div class="inner-container wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+            <ul class="category-list clearfix">
+                {% for item in categories %}
+                    <li>
+                        <div class="category-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box">
+                                    <i class="icon-1"></i>
+                                </div>
+                                <h5>
+                                    <a href="{{ path('app_category_items', {'name': item.libelle}) }}">
+                                        {{ item.libelle }}
+                                    </a>
+                                </h5>
+                                <span>
+                                    {{ item.properties | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>

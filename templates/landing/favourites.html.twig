@@ -1,0 +1,231 @@
+{% extends 'layouts/landing.html.twig' %}
+{% block title %}
+Mes favoris
+{% endblock %}
+{% block body %}
+<section class="page-title-two bg-color-1 centred">
+    <div class="pattern-layer">
+        <div class="pattern-1" style="background-image: url(assets/images/shape/shape-9.png);"></div>
+        <div class="pattern-2" style="background-image: url(assets/images/shape/shape-10.png);"></div>
+    </div>
+    <div class="auto-container">
+        <div class="content-box clearfix">
+            <h1>Mes favoris</h1>
+            <ul class="bread-crumb clearfix">
+                <li><a href="/">Accueil</a></li>
+                <li>Mes favoris</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--End Page Title-->
+
+<div x-data="handlerFav()" x-init="initfavourites()">
+    <div class="row mx-2 my-4 clearfix">
+        <template x-for="(favItem, index) in favItems" :key="index">
+            <div class="col-lg-2 col-md-4 col-sm-12 feature-block">
+                <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <img x-bind:src="favItem.image" alt="">
+                            </figure>
+                            <span class="category" x-text="favItem.category"></span>
+                        </div>
+                        <div class="lower-content">
+                            <div class="author-info clearfix">
+                                <div class="author pull-left">
+                                    <figure class="author-thumb">
+                                        <img src="{{ asset('front/images/feature/author-1.jpg') }}" alt="">
+                                    </figure>
+                                    <h6 x-text="favItem.owner"></h6>
+                                </div>
+                                <div class="buy-btn pull-right">
+                                    <a href="" x-text="favItem.type">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="title-text">
+                                <h4>
+                                    <a href="" class="text-uppercase" x-text="favItem.title">
+                                    </a>
+                                </h4>
+                            </div>
+                            <div class="price-box clearfix">
+                                <div class="price-info pull-left">
+                                    <h6>
+                                        Prix
+                                    </h6>
+                                    <h4 x-text="favItem.price">
+                                    </h4>
+                                </div>
+                                <ul class="other-option pull-right clearfix">
+                                    <li>
+                                        <a class="bg-danger" x-on:click="removeItem(favItem)">
+                                            <i class="icon-13"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p x-text="favItem.description">
+                            </p>
+                            <ul class="more-details clearfix">
+                                <li>
+                                    <i class="icon-10"></i>
+                                    <span x-text="favItem.country"></span>
+                                </li>
+                                <li>
+                                    <i class="icon-12"></i>
+                                    <span x-text="favItem.postalCode"></span>
+                                </li>
+                                <li>
+                                    <i class="icon-16"></i>
+                                    <span x-text="favItem.surface"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+    <section class="bg-color-1 centred p-5" style="background-image: url(asset('front/images/background/cta-1.jpg'))">
+        <div class="auto-container">
+            <div class="inner-box clearfix">
+                <div class="btn-box">
+                    <button x-on:click="sendByMail()" class="theme-btn btn-two">
+                        Me les envoyer par mail
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- property-page-section -->
+{# <section class="property-page-section property-list" x-data="handlerFav()" x-init="initfavourites()">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 content-side">
+                <div class="property-content-side">
+                    <div class="wrapper list">
+                        <template x-for="(favItem, index) in favItems" :key="index">
+                            <div class="deals-list-content list-item">
+                                <div class="deals-block-one">
+                                    <div class="inner-box">
+                                        <div class="image-box">
+                                            <span class="category" x-text="favItem.category"></span>
+                                            <div class="buy-btn" x-text="favItem.type"></div>
+                                        </div>
+                                        <div class="lower-content">
+                                            <div class="title-text">
+                                                <h4><a href="/" x-text="favItem.title"></a></h4>
+                                            </div>
+                                            <div class="price-box clearfix">
+                                                <div class="price-info pull-left">
+                                                    <h6>Prix</h6>
+                                                    <h4 x-text="favItem.price"></h4>
+                                                </div>
+                                            </div>
+                                            <ul class="more-details clearfix">
+                                                <li><i class="icon-14" x-text="favItem.country"></i></li>
+                                                <li><i class="icon-15" x-text="favItem.postalCode"></i></li>
+                                                <li><i class="icon-16" x-text="favItem.surface"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> #}
+
+<script>
+    function handlerFav() {
+        return {
+            favItems: [],
+            isLoading: false,
+            removeItem(product, indexL) {
+                var productId = product.id
+                let storageProducts = JSON.parse(localStorage.getItem('favourites'));
+                let deletedProduct = storageProducts.find(product => product.id == productId);
+                deletedProduct = storageProducts.indexOf(deletedProduct);
+                if (deletedProduct > -1) {
+                    storageProducts.splice(deletedProduct, 1);
+                }
+                localStorage.setItem('favourites', JSON.stringify(storageProducts));
+                this.favItems = storageProducts;
+
+
+                toastr['success']('Bien supprimé des favoris 🛒', 'FAVORIS', {
+                    closeButton: true,
+                    tapToDismiss: true,
+                    progressBar: true,
+                    positionClass: "toast-bottom-left",
+                });
+            },
+
+            initfavourites() {
+                if (localStorage.getItem('favourites')) {
+                    let storageProducts = JSON.parse(localStorage.getItem('favourites'));
+                    this.favItems = storageProducts;
+                }
+                console.debug(this.favItems)
+            },
+
+            sendByMail() {
+                var v = this;
+                // try {
+                    fetch("{{ path('app_favourite_mail') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            "X-Requested-With": "XMLHttpRequest"
+                        },
+                        // 'token=' + el.getAttribute('data-token'),
+                        body: JSON.stringify(this.favItems)
+                    }).then(res => res.json()).then(data => {
+                        console.debug(data)
+                        // if (data.responsemsg == "SUCCESSFUL") {
+                        //     v.showAlert('Paiement',
+                        //         "Votre paiement est accepté ! Validation de la commande en cours",
+                        //         'success')
+                        //     v.updateOrder()
+                        //     v.waitForTime(5000)
+                        //     v.clearFavs()
+                        //     window.location.replace(localStorage.getItem('url'));
+                        // } else {
+                        //     v.showAlert('Paiement',
+                        //         "Désolé, le paiement n'a pas abouti ! Pour reprendre, veuillez recharger cette page. ",
+                        //         'warning')
+                        //     v.isLoading = false
+                        // }
+                    }).catch((err) => {
+                        console.debug(err)
+                        // this.isLoading = false
+                        // this.showToast('error', 'Envoi non effectué !')
+                    })
+                // } catch (error) {
+                // }
+            },
+
+            async clearFavs() {
+                localStorage.removeItem('favourites');
+            },
+
+
+            showToast(type, title, message) {
+                toastr[type](message,
+                    title, {
+                    closeButton: true,
+                    tapToDismiss: false,
+                    rtl: false
+                });
+            },
+        }
+    }
+</script>
+{% endblock %}

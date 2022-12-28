@@ -91,6 +91,11 @@ class Property
      * @ORM\OneToMany(targetEntity=Favourite::class, mappedBy="bien_id")
      */
     private $favourites;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $owner;
     
 
     public function __construct()
@@ -303,6 +308,18 @@ class Property
                 $favourite->setBienId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOwner(): ?string
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?string $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }

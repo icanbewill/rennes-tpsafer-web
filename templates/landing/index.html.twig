@@ -5,6 +5,7 @@
 {% block body %}
     {% include 'partials/landing/carousel.html.twig' %}
     <!-- feature-section -->
+    {% include 'partials/landing/categories.html.twig' %}
     {% if properties|length > 0 %}
         {% include 'partials/landing/bienspreview.html.twig' %}
     {% endif %}

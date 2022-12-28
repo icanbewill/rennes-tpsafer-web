@@ -6,31 +6,32 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="description"
+        content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>
         {% block title %}
-            Dashboard
+        Dashboard
+
         {% endblock %}
     </title>
     <link rel="apple-touch-icon" href="{{ asset('assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/ico/favicon.ico') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+        rel="stylesheet">
     {% block stylesheets %}
     {{ encore_entry_link_tags('app') }}
     {% endblock %}
     {% block javascript %}
-        {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('app') }}
     {% endblock %}
-
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/vendors.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/charts/apexcharts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/extensions/toastr.min.css') }}">
     <!-- END: Vendor CSS-->
-
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-extended.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/colors.css') }}">
@@ -38,57 +39,64 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themes/dark-layout.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themes/bordered-layout.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themes/semi-dark-layout.css') }}">
-
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/core/menu/menu-types/vertical-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages/dashboard-ecommerce.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plugins/charts/chart-apex.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plugins/extensions/ext-component-toastr.css') }}">
     <!-- END: Page CSS-->
-
-    {#<link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}"> #}
-
+    {#
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}"> #}
 </head>
 
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
-
-    <!-- BEGIN: Header-->
-
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
+    data-menu="vertical-menu-modern" data-col=""> <!-- BEGIN: Header-->
     {% include 'partials/header.html.twig' %}
     {% include 'partials/sidebar.html.twig' %}
-
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
-        {% for label, messages in app.flashes %}
+            {% for label, messages in app.flashes %}
             {% for message in messages %}
-                <div class="alert alert-{{ label }}" id="{{ label }}-alert" role="alert">
-                    <h4 class="alert-heading">{{ label }}</h4>
-                    <div class="alert-body">
-                        {{ message }}
-                    </div>
+            <div class="alert alert-{{ label }}" id="{{ label }}-alert" role="alert">
+                <h4 class="alert-heading">
+                    {{ label }}
+                </h4>
+                <div class="alert-body">
+                    {{ message }}
                 </div>
+            </div>
             {% endfor %}
-        {% endfor %}
-    
-        {% block body %}{% endblock %}
-
+            {% endfor %}
+            {% block body %}{% endblock %}
         </div>
     </div>
     <!-- END: Content-->
-
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
-
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
-        <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2020<a class="ml-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
+        <p class="clearfix mb-0">
+            <span class="float-md-left d-block d-md-inline-block mt-25">
+                COPYRIGHT &copy; 2020
+                <a class="ml-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">
+                    Pixinvent
+                </a>
+                <span class="d-none d-sm-inline-block">
+                    , All rights Reserved
+                </span>
+            </span>
+            <span class="float-md-right d-none d-md-block">
+                Hand-crafted & Made with
+                <i data-feather="heart"></i>
+            </span>
+        </p>
     </footer>
-    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <button class="btn btn-primary btn-icon scroll-top" type="button">
+        <i data-feather="arrow-up"></i>
+    </button>
     <!-- END: Footer-->
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/charts/apexcharts.min.js') }}"></script>
@@ -96,8 +104,6 @@
     <script src="{{ asset('assets/js/core/app-menu.js') }}"></script>
     <script src="{{ asset('assets/js/core/app.js') }}"></script>
     <script src="{{ asset('assets/js/scripts/pages/dashboard-ecommerce.js') }}"></script>
-
-    
     <script src="{{ asset('assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/tables/datatable/dataTables.responsive.min.js') }}"></script>
@@ -105,28 +111,24 @@
     <script src="{{ asset('assets/vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js') }}"></script>
     <!-- END: Page JS-->
-
     <style>
-    #table_wrapper{
-    padding: 15px !important;
-    }
-
-    
-div.dataTables_wrapper div.dataTables_filter {
-  text-align: right !important;
-}
-
-table.dataTable thead .sorting:before,
-table.dataTable thead .sorting_asc:before,
-table.dataTable thead .sorting_desc:before {
-  right: 0.45rem;
-}
+        #table_wrapper {
+            padding: 15px !important;
+        }
 
 
+        div.dataTables_wrapper div.dataTables_filter {
+            text-align: right !important;
+        }
+
+        table.dataTable thead .sorting:before,
+        table.dataTable thead .sorting_asc:before,
+        table.dataTable thead .sorting_desc:before {
+            right: 0.45rem;
+        }
     </style>
-
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
             //     $("#success-alert").slideUp(500);
             // });
@@ -153,8 +155,8 @@ table.dataTable thead .sorting_desc:before {
             });
         });
 
-        
-        $(window).on('load', function() {
+
+        $(window).on('load', function () {
             if (feather) {
                 feather.replace({
                     width: 14,

@@ -1,0 +1,21 @@
+{% extends 'layouts/landing.html.twig' %}
+{% block title %}
+    Rechercher un bien
+        
+    
+{% endblock %}
+{% block body %}
+<section class="feature-section alternate-2 sec-pad">
+    <div class="auto-container">
+        <div class="sec-title centred">
+            <h5>
+                Rechercher un bien
+            </h5>
+            <p>
+                Veuillez remplir ce formulaire pour Rechercher un bien particulier. Un mail vous sera envoyé quand un bien correspondant sera enregistré
+            </p>
+        </div>
+        {{ include('views/searched_property/_form.html.twig') }}
+    </div>
+</section>
+{% endblock %}

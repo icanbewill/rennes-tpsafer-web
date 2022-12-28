@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SearchedProperty{% endblock %}
+
+{% block body %}
+    <h1>SearchedProperty</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ searched_property.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ searched_property.type }}</td>
+            </tr>
+            <tr>
+                <th>Minprice</th>
+                <td>{{ searched_property.minprice }}</td>
+            </tr>
+            <tr>
+                <th>Maxprice</th>
+                <td>{{ searched_property.maxprice }}</td>
+            </tr>
+            <tr>
+                <th>Minsurface</th>
+                <td>{{ searched_property.minsurface }}</td>
+            </tr>
+            <tr>
+                <th>Yes</th>
+                <td>{{ searched_property.yes }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ searched_property.country }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ searched_property.createdAt ? searched_property.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_searched_property_index') }}">back to list</a>
+
+    <a href="{{ path('app_searched_property_edit', {'id': searched_property.id}) }}">edit</a>
+
+    {{ include('searched_property/_delete_form.html.twig') }}
+{% endblock %}

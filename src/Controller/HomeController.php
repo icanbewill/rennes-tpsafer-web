@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,9 +23,8 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(CategoryRepository $categoryRepository): Response
     {
-
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('App\Entity\Property');
         $quantity = 3; // Nombre d'élements à sélectionner
@@ -38,9 +38,10 @@ class HomeController extends AbstractController
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
-        dd($properties);
+        // dd($properties);
         return $this->render('landing/index.html.twig', [
             'properties' => $properties,
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 
@@ -49,5 +50,18 @@ class HomeController extends AbstractController
         $numbers = range($min, $max);
         shuffle($numbers);
         return array_slice($numbers, 0, $quantity);
+    }
+
+    /**
+     * @Route("/categories/{name}", name="app_category_items", methods={"GET"})
+     */
+    public function list($name, CategoryRepository $categoryRepository): Response
+    {
+        $category = $categoryRepository->findOneBy(array('libelle' => $name));
+        $properties = $category->getProperties();
+        return $this->render('landing/properties.html.twig', [
+            'category' => $category,
+            'properties' => $properties
+        ]);
     }
 }
