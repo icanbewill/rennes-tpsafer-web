@@ -15,7 +15,7 @@
                                     </a>
                                 </h5>
                                 <span>
-                                    {{ item.properties | length }}
+                                    {{ item.properties ? item.properties : 0 | length }}
                                 </span>
                             </div>
                         </div>
