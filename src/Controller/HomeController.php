@@ -35,6 +35,8 @@ class HomeController extends AbstractController
         $statement = $em->getConnection()->prepare($sql);
         $result = $statement->execute()->fetchAll();
 
+        $properties = [];
+        
         foreach ($result as $key => $value) {
             $properties[] = $value;
         }
