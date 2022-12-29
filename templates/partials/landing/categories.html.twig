@@ -15,7 +15,12 @@
                                     </a>
                                 </h5>
                                 <span>
-                                    {{ item.properties ? item.properties | length : 0 }}
+                                    {% if item.properties %}
+                                        {{ item.properties | length }}
+                                    {% else %}
+                                        0
+                                    {% endif %}
+                                    
                                 </span>
                             </div>
                         </div>
