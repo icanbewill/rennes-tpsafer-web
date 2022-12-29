@@ -11,7 +11,7 @@ Liste des biens
                 Biens
 
             </h5>
-            {% if category %}
+            {% if view == 'list_category' %}
             <h2 class="text-uppercase">
                 {{category.libelle}}
             </h2>
@@ -29,7 +29,7 @@ Liste des biens
                             <figure class="image">
                                 <img src="{{ asset('uploads/property_images/' ~ item.image) }}" alt="">
                             </figure>
-                            <span class="category">{{category ? category.libelle : item.getCategoryId().libelle}}</span>
+                            <span class="category">{{view == 'list_category' ? category.libelle : item.getCategoryId().libelle}}</span>
                         </div>
                         <div class="lower-content">
                             <div class="author-info clearfix">
@@ -70,7 +70,7 @@ Liste des biens
                                             type: item.type,
                                             owner: item.owner,
                                             image: asset('uploads/property_images/' ~ item.image),
-                                            category: category ? category.libelle : item.getCategoryId().libelle,
+                                            category: view == 'list_category' ? category.libelle : item.getCategoryId().libelle,
                                             title: item.title,
                                             price: item.price,
                                             country: item.country,

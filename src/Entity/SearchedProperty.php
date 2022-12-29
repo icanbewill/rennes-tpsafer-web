@@ -40,11 +40,6 @@ class SearchedProperty
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $yes;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $country;
 
     /**
@@ -121,18 +116,6 @@ class SearchedProperty
     public function setMinsurface(int $minsurface): self
     {
         $this->minsurface = $minsurface;
-
-        return $this;
-    }
-
-    public function getYes(): ?string
-    {
-        return $this->yes;
-    }
-
-    public function setYes(?string $yes): self
-    {
-        $this->yes = $yes;
 
         return $this;
     }
