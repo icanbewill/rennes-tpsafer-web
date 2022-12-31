@@ -81,6 +81,7 @@ class PropertyRepository extends ServiceEntityRepository
         if (!empty($search->q)) {
             $query = $query
                 ->andWhere('p.title LIKE :q')
+                ->orWhere('p.description LIKE :q')
                 ->setParameter('q', "%{$search->q}%");
         }
 
