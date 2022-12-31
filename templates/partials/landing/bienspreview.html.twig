@@ -3,17 +3,9 @@
         <div class="sec-title centred">
             <h5>
                 Biens
-
-
-
-
             </h5>
             <h2>
                 Quelques biens
-
-
-
-
             </h2>
             <p>
                 Retrouvez ci-dessous quelques biens, et amusez-vous.
@@ -29,7 +21,7 @@
                                 <img src="{{ asset('uploads/property_images/' ~ item.image) }}" alt="">
                             </figure>
                             <span class="category">
-                                {{ item.getCategoryId().libelle }}
+                                <a class="text-white" href="{{ path('app_category_items', {'name': item.getCategoryId().libelle}) }}">{{ item.getCategoryId().libelle }}</a>
                             </span>
                         </div>
                         <div class="lower-content">

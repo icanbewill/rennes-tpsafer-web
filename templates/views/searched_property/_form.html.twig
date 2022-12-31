@@ -1,4 +1,4 @@
-{{ form_start(form) }}
+{{ form_start(form) }} 
 {# {{ form_widget(form) }} #}
 <section class="contact-section bg-color-5">
     <div class="auto-container">
@@ -8,28 +8,28 @@
                     <div class="default-form">
                         <div class="row clearfix">
                             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                {{ form_widget(form.name, {'attr': {'class' : 'form-control','placeholder': 'Votre nom' }} ) }}
+                                {{ form_widget(form.name, {'attr': {'class' : 'form-control form-control-lg','placeholder': 'Votre nom' }} ) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                {{ form_widget(form.email, {'attr': {'class' : 'form-control','placeholder': 'Votre adresse mail' }} ) }}
+                                {{ form_widget(form.email, {'attr': {'class' : 'form-control form-control-lg','placeholder': 'Votre adresse mail' }} ) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                {{ form_widget(form.type, {'attr': {'class' : 'form-control','placeholder': 'Type de bien' }} ) }}
+                                {{ form_widget(form.type, {'attr': {'class' : 'form-control form-control-lg','placeholder': 'Type de bien' }} ) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                {{ form_widget(form.country, {'attr': {'class' : 'form-control','placeholder': 'Localisation' }} ) }}
+                                {{ form_widget(form.country, {'attr': {'class' : 'form-control form-control-lg','placeholder': 'Localisation' }} ) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                {{ form_widget(form.minprice, {'attr': {'class' : 'form-control','placeholder': 'Prix Min' }} ) }}
+                                {{ form_widget(form.minprice, {'attr': {'class' : 'form-control form-control-lg','placeholder': 'Prix Min' }} ) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                {{ form_widget(form.maxprice, {'attr': {'class' : 'form-control','placeholder': 'Prix Max' }} ) }}
+                                {{ form_widget(form.maxprice, {'attr': {'class' : 'form-control form-control-lg','placeholder': 'Prix Max' }} ) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                {{ form_widget(form.minsurface, {'attr': {'class' : 'form-control','placeholder': 'Surface Min' }} ) }}
+                                {{ form_widget(form.minsurface, {'attr': {'class' : 'form-control form-control-lg','placeholder': 'Surface Min' }} ) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                {{ form_widget(form.maxsurface, {'attr': {'class' : 'form-control','placeholder': 'Surface Max' }} ) }}
+                                {{ form_widget(form.maxsurface, {'attr': {'class' : 'form-control form-control-lg','placeholder': 'Surface Max' }} ) }}
                             </div>
                         </div>
                         <button class="btn theme-btn btn-one">{{ button_label|default('Enregistrer') }}</button>

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\SearchedProperty;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,7 @@ class SearchedPropertyType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('email')
+            ->add('email', EmailType::class)
             ->add('type', ChoiceType::class, [
                 'choices'  => [
                     'Location' => 'location',

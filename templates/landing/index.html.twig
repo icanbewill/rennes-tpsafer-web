@@ -1,16 +1,52 @@
 {% extends 'layouts/landing.html.twig' %}
 {% block title %}
-    Utilisateurs
+Utilisateurs
 {% endblock %}
 {% block body %}
-    {% include 'partials/landing/carousel.html.twig' %}
-    <!-- feature-section -->
-    {% if categories|length > 0 %}
-        {% include 'partials/landing/categories.html.twig' %}
-    {% endif %}
-    {% if properties|length > 0 %}
-        {% include 'partials/landing/bienspreview.html.twig' %}
-    {% endif %}
-    
+{% include 'partials/landing/carousel.html.twig' %}
+<!-- feature-section -->
+{% if categories|length > 0 %}
+{% include 'partials/landing/categories.html.twig' %}
+{% endif %}
+<section class="about-section bg-color-1">
+    <div class="auto-container">
+        <div class="row align-items-center clearfix">
+            <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                <div class="image_block_2">
+                    <div class="image-box">
+                        <figure class="image"><img src="{{asset('front/images/resource/bann1.jpg')}}" alt=""></figure>
+                        <div class="text wow fadeInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                            <h2>5</h2>
+                            <h4>ans <br />d'expérience</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                <div class="content_block_3">
+                    <div class="content-box">
+                        <div class="sec-title">
+                            <h5>Qui sommes nous ?</h5>
+                            <h2>SAFER</h2>
+                        </div>
+                        <div class="text">
+                            <p>
+                                Une Safer (Société d’aménagement foncier et d’établissement rural) est une société
+                                anonyme, sans but lucratif (sans distribution de bénéfices), avec des missions d’intérêt
+                                général, sous tutelle des ministères de l’Agriculture et des Finances. Les Safer
+                                couvrent le territoire français métropolitain et 3 DOM. Issues des lois d’orientation
+                                agricole de 1960 et 1962
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if properties|length > 0 %}
+{% include 'partials/landing/bienspreview.html.twig' %}
+{% endif %}
+
 <!-- feature-section end -->
 {% endblock %}
