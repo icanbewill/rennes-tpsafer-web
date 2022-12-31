@@ -113,7 +113,6 @@ Liste des biens
     function handler() {
         return {
             addTofav(item) {
-                // console.debug(item)
                 let favourites = [];
                 if (localStorage.getItem('favourites')) {
                     favourites = JSON.parse(localStorage.getItem('favourites'));
@@ -121,18 +120,27 @@ Liste des biens
                 favourites.push(item);
                 localStorage.setItem('favourites', JSON.stringify(favourites));
 
-                // const span = document.getElementById('favourites-item-count');
-                // const span2 = document.getElementById('favourites-item-count2');
-                // let lastV = span.innerText
-                // span.innerHTML = parseInt(lastV) + 1
-                // span2.innerHTML = parseInt(lastV) + 1
+                let found = favourites.find((_item) => _item.id === item.id);
+                if(found){
+                    toastr['warning']('Cet élement est déja enregistré en favoris 🛒', 'FAVORIS', {
+                        closeButton: true,
+                        tapToDismiss: true,
+                        progressBar: true,
+                        positionClass: "toast-bottom-left",
+                    });
 
-                toastr['success']('Produit ajouté aux favoris 🛒', 'FAVORIS', {
-                    closeButton: true,
-                    tapToDismiss: true,
-                    progressBar: true,
-                    positionClass: "toast-bottom-left",
-                });
+                }else{
+                    favourites.push(item);
+                    localStorage.setItem('favourites', JSON.stringify(favourites))
+    
+                    toastr['success']('Produit ajouté aux favoris 🛒', 'FAVORIS', {
+                        closeButton: true,
+                        tapToDismiss: true,
+                        progressBar: true,
+                        positionClass: "toast-bottom-left",
+                    });
+
+                }
             },
         }
     }

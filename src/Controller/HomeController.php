@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Data\SearchData;
+use App\Entity\Property;
 use App\Form\SearchDataForm;
 use App\Repository\CategoryRepository;
 use App\Repository\PropertyRepository;
@@ -38,7 +39,19 @@ class HomeController extends AbstractController
         $properties = [];
         
         foreach ($result as $key => $value) {
-            $properties[] = $value;
+            $property = new Property();
+            $property->setId($value['id']);
+            $property->setImage($value['image']);
+            $property->setTitle($value['title']);
+            $property->setOwner($value['owner']);
+            $property->setType($value['type']);
+            $property->setSurface($value['surface']);
+            $property->setPrice($value['price']);
+            $property->setCountry($value['country']);
+            $property->setPostalCode($value['postal_code']);
+            $property->setDescription($value['description']);
+            $property->setCategoryId($categoryRepository->findOneBy(array('id' => $value['category_id_id'])));
+            $properties[] = $property;
         }
 
         $data = new SearchData();

@@ -61,6 +61,7 @@ class FavouriteController extends AbstractController
             // on le persiste
             $this->em->persist($favourite);
         }
+        $this->em->persist($favourite);
         $this->em->flush();
 
 
