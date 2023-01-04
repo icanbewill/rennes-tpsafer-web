@@ -114,7 +114,7 @@
                                     Rennes, avenue Donnez-nous 20 svp
                                                                     
                                 </li>
-                                <li>
+                                {# <li>
                                     <i class="far fa-clock"></i>
                                     Lun - Sam 9.00 - 18.00
                                                                     
@@ -125,7 +125,7 @@
                                         + 00 00 00 00
                                                                             
                                     </a>
-                                </li>
+                                </li> #}
                             </ul>
                         </div>
                         <div class="right-column pull-right">
@@ -145,12 +145,11 @@
                         <div class="main-box">
                             <div class="logo-box">
                                 <figure class="logo">
-                                    <h1 class="font-weight-bolder text-primary">
-                                        <a href="/">
-                                            SAFER
-                                                                                    
+                                    <h2 class="font-weight-bolder text-logo">
+                                        <a class="text-logo" href="/">
+                                            SAFER                                    
                                         </a>
-                                    </h1>
+                                    </h2>
                                 </figure>
                             </div>
                             <div class="menu-area clearfix">
@@ -171,31 +170,44 @@
                                                     </span>
                                                 </a>
                                             </li>
+                                            {# <li class="dropdown">
+                                                <a href="/">Catégories</a>
+                                                <ul>
+                                                    {% for item in categories %}
+                                                        <li>
+                                                            <a href="{{ path('app_category_items', {'name': item.libelle}) }}">
+                                                                {{ item.libelle }}
+                                                            </a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li> #}
                                             <li class="">
                                                 <a href="{{ path('app_searched_property_new') }}">
                                                     <span>
-                                                        Rechercher un bien
-                                                                                                            
+                                                        Alerte bien                                              
                                                     </span>
                                                 </a>
                                             </li>
+                                                <li>
+                                                    <a href="#contact">
+                                                        <span>
+                                                            Contactez-nous                                            
+                                                        </span>
+                                                    </a>
+                                                </li>
                                             <li>
-                                                <a href="#contact">
-                                                    <span>
-                                                        Contactez-nous
-                                                                                                            
-                                                    </span>
+                                                
+                                            <div class="btn-box">
+                                                <a href="{{path('app_favourite_list')}}" class="theme-btn theme-btn-second btn-one btn-sm">
+                                                    <span></span>
+                                                    Mes favoris                      
                                                 </a>
+                                            </div>
                                             </li>
                                         </ul>
                                     </div>
                                 </nav>
-                            </div>
-                            <div class="btn-box">
-                                <a href="{{path('app_favourite_list')}}" class="theme-btn btn-one btn-sm">
-                                    <span></span>
-                                    Mes favoris                      
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -206,25 +218,25 @@
                         <div class="main-box">
                             <div class="logo-box">
                                 <figure class="logo">
-                                    <h1 class="font-weight-bolder text-primary">
-                                        <a href="/">
+                                    <h2 class="font-weight-bolder text-logo">
+                                        <a class="text-logo" href="/">
                                             SAFER
                                                                                     
                                         </a>
-                                    </h1>
+                                    </h2>
                                 </figure>
                             </div>
                             <div class="menu-area clearfix">
                                 <nav class="main-menu clearfix"><!--Keep This Empty / Menu will come through Javascript-->
                                 </nav>
                             </div>
-                            <div class="btn-box">
-                                <a href="{{path('app_favourite_list')}}" class="theme-btn btn-one">
+                            {# <div class="btn-box">
+                                <a href="{{path('app_favourite_list')}}" class="theme-btn theme-btn-second btn-one">
                                     <span></span>
                                     Mes favoris
                                                                     
                                 </a>
-                            </div>
+                            </div> #}
                         </div>
                     </div>
                 </div>

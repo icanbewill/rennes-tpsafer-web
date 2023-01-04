@@ -5,13 +5,14 @@
         <div class="border rounded p-2">
             <h4 class="mb-1">
                 Image de Couverture
+                            
             </h4>
             <div class="media flex-column flex-md-row">
-                <img src="{{ asset('assets/images/slider/03.jpg') }}" id="blog-feature-image"
-                    class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
+                <img src="{{ asset('assets/images/slider/03.jpg') }}" id="blog-feature-image" class="rounded mr-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
                 <div class="media-body">
                     <small class="text-muted">
                         Required image resolution 800x400, image size 10mb.
+                                            
                     </small>
                     <p class="my-50">
                         <a href="javascript:void(0);" id="blog-image-text">
@@ -22,11 +23,11 @@
                         <div class="form-group mb-0">
                             <div class="custom-file">
                                 {# <input type="file" class="custom-file-input" name="image" id="blogCustomFile"
-                                    accept="image/*" /> #}
-                                {{ form_widget(form.imageFile, {'attr': {'class': 'custom-file-input' }}  ) }}
-
+                                                                    accept="image/*" /> #}
+                                {{ form_widget(form.imageFile, {'attr': {'class': 'custom-file-input' }}) }}
+                                                 
                                 <label class="custom-file-label" for="blogCustomFile">
-                                    Choisir un fichier
+                                    Choisir un fichier    
                                 </label>
                             </div>
                         </div>
@@ -42,7 +43,7 @@
                 Titre du bien
             </label>
             {{ form_widget(form.title, {'attr': {'class': 'form-control' }} ) }}
-
+                        
             <div class="form-error text-danger">
                 {{ form_errors(form.title) }}
             </div>
@@ -53,9 +54,8 @@
             <label for="libelle">
                 Surface
             </label>
-            {{ form_widget(form.surface, {'attr': {'class': 'form-control' }}
-            ) }}
-
+            {{ form_widget(form.surface, {'attr': {'class': 'form-control' }}) }}
+            
             <div class="form-error text-danger">
                 {{ form_errors(form.surface) }}
             </div>
@@ -64,11 +64,10 @@
     <div class="col-md-6 col-12">
         <div class="form-group">
             <label for="libelle">
-                Type
+                Type        
             </label>
-            {{ form_widget(form.type, {'attr': {'class': 'form-control' }}
-            ) }}
-
+            {{ form_widget(form.type, {'attr': {'class': 'form-control' }} ) }}
+                        
             <div class="form-error text-danger">
                 {{ form_errors(form.type) }}
             </div>
@@ -78,10 +77,12 @@
         <div class="form-group">
             <label for="libelle">
                 Prix
+                            
             </label>
             {{ form_widget(form.price, {'attr': {'class': 'form-control' }}
             ) }}
-
+            
+                        
             <div class="form-error text-danger">
                 {{ form_errors(form.price) }}
             </div>
@@ -91,10 +92,12 @@
         <div class="form-group">
             <label for="libelle">
                 Catégorie
+                            
             </label>
             {{ form_widget(form.category_id, {'attr': {'class': 'form-control' }}
             ) }}
-
+            
+                        
             <div class="form-error text-danger">
                 {{ form_errors(form.category_id) }}
             </div>
@@ -104,10 +107,12 @@
         <div class="form-group">
             <label for="libelle">
                 Ville
+                            
             </label>
             {{ form_widget(form.country, {'attr': {'class': 'form-control' }}
             ) }}
-
+            
+                        
             <div class="form-error text-danger">
                 {{ form_errors(form.country) }}
             </div>
@@ -117,10 +122,12 @@
         <div class="form-group">
             <label for="libelle">
                 Code postal
+                            
             </label>
             {{ form_widget(form.postal_code, {'attr': {'class': 'form-control' }}
             ) }}
-
+            
+                        
             <div class="form-error text-danger">
                 {{ form_errors(form.postal_code) }}
             </div>
@@ -130,10 +137,12 @@
         <div class="form-group">
             <label for="libelle">
                 Porteur
+                            
             </label>
             {{ form_widget(form.owner, {'attr': {'class': 'form-control' }}
             ) }}
-
+            
+                        
             <div class="form-error text-danger">
                 {{ form_errors(form.owner) }}
             </div>
@@ -143,10 +152,12 @@
         <div class="form-group">
             <label for="libelle">
                 Description
+                            
             </label>
             {{ form_widget(form.description, {'attr': {'class': 'form-control' }}
             ) }}
-
+            
+                        
             <div class="form-error text-danger">
                 {{ form_errors(form.description) }}
             </div>
@@ -168,12 +179,10 @@
 </button> #}
 
 {% block javascripts %}
-<script>
-    (function (window, document, $) {
+    <script>
+       (function (window, document, $) {
         'use strict';
 
-        //var select = $('.select2');
-        //var editor = '#blog-editor-container .editor';
         var blogFeatureImage = $('#blog-feature-image');
         var blogImageText = document.getElementById('blog-image-text');
         var blogImageInput = $('#blogCustomFile');

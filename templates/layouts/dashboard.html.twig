@@ -10,8 +10,9 @@
         <title>
             {% block title %}
                 Dashboard
-                
-                        
+                                
+                                        
+                            
             {% endblock %}
         </title>
         {# <link rel="apple-touch-icon" href="{{ asset('assets/images/ico/apple-icon-120.png') }}"> #}
@@ -37,9 +38,12 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/core/menu/menu-types/vertical-menu.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages/dashboard-ecommerce.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plugins/extensions/ext-component-toastr.css') }}">
+
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- END: Page CSS-->
     {#
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}"> #}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}"> #}
     </head>
         <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col=""> <!-- BEGIN: Header-->
         {% include 'partials/header.html.twig' %}
@@ -72,18 +76,22 @@
             <p class="clearfix mb-0">
                 <span class="float-md-left d-block d-md-inline-block mt-25">
                     COPYRIGHT &copy; 2022
-                                    
+                                                        
+                                        
                     <span class="d-none d-sm-inline-block">
                         , All rights Reserved
-                                        
+                                                                
+                                            
                     </span>
                 </span>
                 <span class="float-md-right d-none d-md-block">
                     Hand-crafted & Made with
-                                    
+                                                        
+                                        
                     <i data-feather="heart"></i>
                     by Will & Mael
-                                
+                                                    
+                                    
                 </span>
             </p>
         </footer>
@@ -91,7 +99,6 @@
             <i data-feather="arrow-up"></i>
         </button>
         <!-- END: Footer-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
         <script src="{{ asset('assets/vendors/js/extensions/toastr.min.js') }}"></script>
         <script src="{{ asset('assets/js/core/app-menu.js') }}"></script>
@@ -102,6 +109,7 @@
         <script src="{{ asset('assets/vendors/js/tables/datatable/responsive.bootstrap4.js') }}"></script>
         <script src="{{ asset('assets/vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>
         <script src="{{ asset('assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('assets/vendors/js/ui/jquery.sticky.js') }}"></script>
         <!-- END: Page JS-->
         <style>
         #table_wrapper {
