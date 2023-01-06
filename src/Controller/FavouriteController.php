@@ -6,15 +6,12 @@ use App\Entity\Favourite;
 use App\Entity\Property;
 use App\Form\FavouriteType;
 use App\Repository\FavouriteRepository;
-use App\Repository\PropertyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FavouriteController extends AbstractController
@@ -40,6 +37,10 @@ class FavouriteController extends AbstractController
 
     /**
      * @Route("/my-favourites", name="app_favourite_list", methods={"GET", "POST"})
+     */
+    /**
+     * Affichage de la liste des favoris de l'utilisateur
+     *  On vérifie si une session existe, et on affiche les biens correspondants. Si non, on renvoie un formulaire pour que l'utilisateur se crée une session
      */
     public function list(Request $request): Response
     {
@@ -71,6 +72,7 @@ class FavouriteController extends AbstractController
     }
 
     /**
+     * Cette fonction envoie les favoris par mail, en se basant sur l'email en session
      * @Route("/favourite/mail", name="app_favourite_mail", methods={"GET", "POST"})
      */
     public function sendMail(Request $request, MailerInterface $mailer)
@@ -137,6 +139,7 @@ class FavouriteController extends AbstractController
         }
     }
 
+    /** Ajout d'un bien en favoris */
     public function addFavourite(Property $property, $userMail)
     {
         $favourite = $this->favouriteRepository->findBy(array('email' => $userMail, 'bien_id' => $property->getId()));
@@ -212,6 +215,7 @@ class FavouriteController extends AbstractController
     }
 
     /**
+     * Suppression d'un bien des favoris, par l'utilisateur lui-même
      * @Route("/favourite/remove/{id}", name="app_favourite_remove", methods={"GET"})
      */
     public function remove(Request $request, Favourite $favourite): Response

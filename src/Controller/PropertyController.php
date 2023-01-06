@@ -43,6 +43,7 @@ class PropertyController extends AbstractController
         ]);
     }
     /**
+     * Retourner la liste des biens sur la landing page
      * @Route("/all", name="app_property_all", methods={"GET"})
      */
     public function properties(Request $request, PropertyRepository $propertyRepository, CategoryRepository $categoryRepository): Response
@@ -133,6 +134,7 @@ class PropertyController extends AbstractController
     }
 
     /**
+     * Affichge sur la landing des details d'un bien
      * @Route("/details/{id}", name="app_property_details", methods={"GET"})
      */
     public function details(Property $property): Response

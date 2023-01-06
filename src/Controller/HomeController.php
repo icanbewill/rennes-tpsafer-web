@@ -67,6 +67,7 @@ class HomeController extends AbstractController
     }
 
     /**
+     * retourner la liste des categories sur la landing page
      * @Route("/categories/{name}", name="app_category_items", methods={"GET"})
      */
     public function list($name, CategoryRepository $categoryRepository): Response
@@ -81,6 +82,7 @@ class HomeController extends AbstractController
     }
 
     /**
+     * Gestion du formulaire multi-critere
      * @Route("/search", name="app_search")
      */
     public function search(PropertyRepository $repository, Request $request)
