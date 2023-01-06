@@ -33,15 +33,16 @@ class SearchDataForm extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'choices'  => [
-                    'Tout' => null,
                     'Location' => 'location',
                     'Vente' => 'vente',
                 ],
+                'required' => false,
             ])
-            // ->add('categories', EntityType::class, [
-            //     'class' => Category::class,
-            //     'choice_label' => 'libelle',
-            // ])
+            ->add('categories', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'libelle',
+                'required' => false,
+            ])
             // ->add('categories', EntityType::class, [
             //     'label' => false,
             //     'required' => false,

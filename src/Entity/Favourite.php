@@ -33,6 +33,11 @@ class Favourite
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isSent;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +75,18 @@ class Favourite
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function isIsSent(): ?bool
+    {
+        return $this->isSent;
+    }
+
+    public function setIsSent(bool $isSent): self
+    {
+        $this->isSent = $isSent;
 
         return $this;
     }

@@ -1,0 +1,26 @@
+{% extends 'layouts/landing.html.twig' %}
+{% block title %}
+
+{% endblock %}
+{% block body %}
+
+<section class="page-title-two bg-color-2 centred">
+    <div class="container my-4">
+
+        {{ form_start(form) }}
+        <label for="libelle mt-4">
+            Veuillez entrer votre adresse mail pour enregistrer une session
+        </label>
+        <div class="input-group mb-3">
+            {{ form_widget(form.email, {'attr': {'class': 'form-control' }} ) }}
+            <div class="input-group-append">
+                <!-- {{ button_label|default('Soumettre', {'attr': {'class': 'btn btn-outline-secondary' }} ) }} -->
+                <button class="btn btn-secondary" type="submit">Soumettre</button>
+            </div>
+        </div>
+        <button class="btn">
+        </button>
+        {{ form_end(form) }}
+    </div>
+</section>
+{% endblock %}

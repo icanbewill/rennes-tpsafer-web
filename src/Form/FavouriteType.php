@@ -13,8 +13,6 @@ class FavouriteType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('createdAt')
-            ->add('bien_id')
         ;
     }
 

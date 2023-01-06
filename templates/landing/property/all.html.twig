@@ -1,0 +1,322 @@
+{% extends 'layouts/landing.html.twig' %}
+{% block title %}
+Mes favoris
+{% endblock %}
+{% block body %}
+<section class="page-title-two bg-color-1 centred">
+    <div class="pattern-layer">
+        <div class="pattern-1" style="background-image: url(assets/images/shape/shape-9.png);"></div>
+        <div class="pattern-2" style="background-image: url(assets/images/shape/shape-10.png);"></div>
+    </div>
+    <div class="auto-container">
+        <div class="content-box clearfix">
+            <h1>Tous les biens</h1>
+            <ul class="bread-crumb clearfix">
+                <li><a href="/">Accueil</a></li>
+                <li>Liste des biens</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+<section class="property-page-section property-list" style="padding: 10px 0;">
+    <div class="mx-2">
+        <div class="search-field">
+            <div class="inner-box">
+                <div class="top-search">
+                    {{ form_start(form, {'action': path('app_search'), 'method': 'POST', 'attr': {'class': 'search-form'
+                    }}) }}
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-12 col-sm-12 column">
+                            <div class="form-group">
+                                <label>Bien recherché</label>
+                                <div class="field-input">
+                                    {{ form_widget(form.q, {'attr': {'class': 'form-control form-control-lg' }}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <input type="search" name="search-field" placeholder="Search by Property, Location or Landmark..." required=""> -->
+                        <div class="col-lg-3 col-md-6 col-sm-12 column">
+                            <div class="form-group">
+                                <label>Localisation</label>
+                                <div class="field-input">
+                                    {{ form_widget(form.country, {'attr': {'class': 'form-control form-control-lg' }})
+                                    }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 column">
+                            <div class="form-group">
+                                <label>Type</label>
+                                <div class="field-select">
+                                    {{ form_widget(form.type, {'attr': {'class': 'form-select form-select-sm' }}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12 col-sm-12 column">
+                            <div class="form-group">
+                                <label>Catégorie</label>
+                                <div class="field-input">
+                                    {{ form_widget(form.categories, {'attr': {'class': 'form-select form-select-sm' }})
+                                    }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-btn">
+                        <button type="submit" class="px-2"><i class="fas fa-search"></i>RECHERCHER</button>
+                    </div>
+
+                    <button class="nav-btn nav-toggler navSidebar-button clearfix search__toggler text-primary"
+                        type="button">Recherche avancée<i class="fas fa-angle-down"></i>
+                    </button>
+
+                </div>
+                <div class="switch_btn_one">
+                    <div class="advanced-search">
+                        <div class="close-btn">
+                            <a href="#" class="close-side-widget"><i class="far fa-times"></i></a>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-3 col-md-12 col-sm-12 column">
+                                <div class="form-group">
+                                    <label>Prix Min</label>
+                                    <div class="field-input">
+                                        {{ form_widget(form.pricemin, {'attr': {'class': 'form-control form-control-lg'
+                                        }}) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-12 col-sm-12 column">
+                                <div class="form-group">
+                                    <label>Prix Max</label>
+                                    <div class="field-input">
+                                        {{ form_widget(form.pricemax, {'attr': {'class': 'form-control form-control-lg'
+                                        }}) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-12 col-sm-12 column">
+                                <div class="form-group">
+                                    <label>Surface Min</label>
+                                    <div class="field-input">
+                                        {{ form_widget(form.surfacemin, {'attr': {'class': 'form-control
+                                        form-control-lg' }}) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-12 col-sm-12 column">
+                                <div class="form-group">
+                                    <label>Surface Max</label>
+                                    <div class="field-input">
+                                        {{ form_widget(form.surfacemax, {'attr': {'class': 'form-control
+                                        form-control-lg' }}) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="mx-2">
+        <!-- <div class="col-lg-12 col-md-12 col-sm-12 sidebar-side">
+            <div class="default-sidebar property-sidebar">
+                <div class="filter-widget sidebar-widget">
+                    <div class="widget-title">
+                        <h5>Property</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="select-box">
+                            <select class="wide">
+                                <option data-display="All Type">All Type</option>
+                                <option value="1">Villa</option>
+                                <option value="2">Commercial</option>
+                                <option value="3">Residential</option>
+                            </select>
+                        </div>
+                        <div class="select-box">
+                            <select class="wide">
+                                <option data-display="Select Location">Select Location</option>
+                                <option value="1">New York</option>
+                                <option value="2">California</option>
+                                <option value="3">London</option>
+                                <option value="4">Maxico</option>
+                            </select>
+                        </div>
+                        <div class="select-box">
+                            <select class="wide">
+                                <option data-display="This Area Only">This Area Only</option>
+                                <option value="1">New York</option>
+                                <option value="2">California</option>
+                                <option value="3">London</option>
+                                <option value="4">Maxico</option>
+                            </select>
+                        </div>
+                        <div class="select-box">
+                            <select class="wide">
+                                <option data-display="All Type">Max Rooms</option>
+                                <option value="1">2+ Rooms</option>
+                                <option value="2">3+ Rooms</option>
+                                <option value="3">4+ Rooms</option>
+                                <option value="4">5+ Rooms</option>
+                            </select>
+                        </div>
+                        <div class="select-box">
+                            <select class="wide">
+                                <option data-display="Most Popular">Most Popular</option>
+                                <option value="1">Villa</option>
+                                <option value="2">Commercial</option>
+                                <option value="3">Residential</option>
+                            </select>
+                        </div>
+                        <div class="select-box">
+                            <select class="wide">
+                                <option data-display="All Type">Select Floor</option>
+                                <option value="1">2x Floor</option>
+                                <option value="2">3x Floor</option>
+                                <option value="3">4x Floor</option>
+                            </select>
+                        </div>
+                        <div class="filter-btn">
+                            <button type="submit" class="theme-btn btn-one"><i
+                                    class="fas fa-filter"></i>&nbsp;Filter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 content-side">
+                <div class="property-content-side">
+                    <div class="item-shorting clearfix">
+                        <div class="left-column pull-left">
+                            <h5> Nombre de resulats : <span>{{ properties | length }}</span></h5>
+                        </div>
+                    </div>
+                    <div class="wrapper list">
+                        <div class="deals-list-content list-item">
+                            <div class="row">
+                                {% for item in properties %}
+                                <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
+                                    <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
+                                        data-wow-duration="1500ms">
+                                        <div class="inner-box">
+                                            <div class="image-box">
+                                                <figure class="image">
+                                                    <img src="{{ asset('uploads/property_images/' ~ item.image) }}"
+                                                        alt="">
+                                                </figure>
+                                                <span class="category">
+                                                    <a class="text-white"
+                                                        href="{{ path('app_category_items', {'name': item.getCategoryId().libelle}) }}">{{
+                                                        item.getCategoryId().libelle }}</a>
+                                                </span>
+                                            </div>
+                                            <div class="lower-content">
+                                                <div class="author-info clearfix">
+                                                    <div class="author pull-left">
+                                                        <figure class="author-thumb">
+                                                            <img src="{{ asset('front/images/feature/author-1.jpg') }}"
+                                                                alt="">
+                                                        </figure>
+                                                        <h6>
+                                                            {{ item.owner }}
+                                                        </h6>
+                                                    </div>
+                                                    <div class="buy-btn pull-right">
+                                                        <a href="/">
+                                                            {{ item.type }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="title-text">
+                                                    <h4>
+                                                        <a href="/">
+                                                            {{ item.title }}
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div class="price-box clearfix">
+                                                    <div class="price-info pull-left">
+                                                        <h6>
+                                                            Prix
+                                                        </h6>
+                                                        <h4>
+                                                            {{ item.price | format_currency('EUR') }}
+                                                        </h4>
+                                                    </div>
+                                                    <ul class="other-option pull-right clearfix">
+                                                        <li>
+                                                            {# {% set entryInfo = {
+                                                            id: item.id,
+                                                            type: item.type,
+                                                            owner: item.owner,
+                                                            image: asset('uploads/property_images/' ~ item.image),
+                                                            category: item.getCategoryId().libelle,
+                                                            title: item.title,
+                                                            price: item.price,
+                                                            country: item.country,
+                                                            postalCode: item.postalCode,
+                                                            surface: item.surface,
+                                                            } %} #}
+
+                                                            {# <a
+                                                                href="{{ path('app_favourite_new', {'id': item.id }) }}">
+                                                                <i class="icon-13"></i>
+                                                            </a> #}
+                                                            {# <a x-on:click="addTofav({{ entryInfo|json_encode }})">
+                                                                <i class="icon-13"></i>
+                                                            </a> #}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                {# <p>
+                                                    {{ item. description }}
+                                                </p> #}
+                                                <ul class="more-details clearfix">
+                                                    <li>
+                                                        <i class="icon-10"></i>
+                                                        {{ item.country }}
+                                                    </li>
+                                                    <li>
+                                                        <i class="icon-12"></i>
+                                                        {{ item.postalCode ? item.postalCode : '' }}
+                                                    </li>
+                                                    <li>
+                                                        <i class="icon-16"></i>
+                                                        {{ item.surface }}
+                                                        m²
+
+                                                    </li>
+                                                </ul>
+                                                <hr>
+                                                <div class="other-info-box clearfix">
+                                                    <div class="btn-box pull-left">
+                                                        <a href="{{ path('app_property_details', {'id': item.id }) }}"
+                                                            class="theme-btn-second">Détails</a>
+                                                    </div>
+                                                    <ul class="other-option pull-right clearfix">
+                                                        <li><a href="{{ path('app_favourite_new', {'id': item.id }) }}"><i
+                                                                    class="icon-13"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

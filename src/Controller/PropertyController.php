@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Property;
 use App\Form\PropertyType;
+use App\Form\SearchDataForm;
+use App\Repository\CategoryRepository;
 use App\Repository\PropertyRepository;
+use App\Repository\SearchedPropertyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -38,18 +42,35 @@ class PropertyController extends AbstractController
             'properties' => $propertyRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/all", name="app_property_all", methods={"GET"})
+     */
+    public function properties(Request $request, PropertyRepository $propertyRepository, CategoryRepository $categoryRepository): Response
+    {
+        $data = new SearchData();
+        $data->page = $request->get('page', 1);
+        $form = $this->createForm(SearchDataForm::class, $data);
+        $form->handleRequest($request);
+
+        return $this->render('landing/property/all.html.twig', [
+            'properties' => $propertyRepository->findAll(),
+            'categories' => $categoryRepository->findAll(),
+            'form' => $form->createView()
+        ]);
+    }
 
     /**
      * @Route("/new", name="app_property_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, PropertyRepository $propertyRepository, SluggerInterface $slugger): Response
+    public function new(Request $request, PropertyRepository $propertyRepository, SluggerInterface $slugger, SearchedPropertyRepository $searchedPropertyRepository): Response
     {
         $user = $this->security->getUser();
         $property = new Property();
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $searchedProperties = $searchedPropertyRepository->findByFilter($property);
             $propertyRepository->add($property, true);
 
             $uploadedFile = $form['imageFile']->getData();
@@ -70,12 +91,20 @@ class PropertyController extends AbstractController
                     // ... handle exception if something happens during file upload
                 }
 
+                // Envoyer de mail à tout ceux qui recherchent un bien pareil
+
+
                 $property->setImage($newFilename);
-                $this->addFlash(
-                    'success',
-                    'Enregistrement effectué avec succès!'
-                );
             }
+
+            if(count($searchedProperties)){
+
+            }
+
+            $this->addFlash(
+                'success',
+                'Enregistrement effectué avec succès!'
+            );
 
             $property->setAddedBy($user);
             $this->em->persist($property);
@@ -100,6 +129,16 @@ class PropertyController extends AbstractController
         return $this->render('views/property/show.html.twig', [
             'property' => $property,
             'category' => $category ? $category[0] : null,
+        ]);
+    }
+
+    /**
+     * @Route("/details/{id}", name="app_property_details", methods={"GET"})
+     */
+    public function details(Property $property): Response
+    {
+        return $this->render('landing/property/details.html.twig', [
+            'property' => $property,
         ]);
     }
 

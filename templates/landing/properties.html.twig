@@ -4,25 +4,32 @@ Liste des biens
 
 {% endblock %}
 {% block body %}
-<section x-data="handler()" class="feature-section alternate-2 sec-pad">
+<section class="page-title-two bg-color-1 centred">
+    <div class="pattern-layer">
+        <div class="pattern-1" style="background-image: url(assets/images/shape/shape-9.png);"></div>
+        <div class="pattern-2" style="background-image: url(assets/images/shape/shape-10.png);"></div>
+    </div>
     <div class="auto-container">
-        <div class="sec-title centred">
-            <h5>
-                Biens
-
-            </h5>
+        <div class="content-box clearfix">
+            <h1>Tous les biens</h1>
+            <ul class="bread-crumb clearfix">
+                <li><a href="/">Accueil</a></li>
+                <li>Biens</li>
+            </ul>
             {% if view == 'list_category' %}
             <h2 class="text-uppercase">
                 {{category.libelle}}
             </h2>
             {% endif %}
-            <p>
-                Liste des biens
-            </p>
         </div>
+
+    </div>
+</section>
+<section x-data="handler()" class="feature-section alternate-2 sec-pad">
+    <div class="mx-2">
         <div class="row clearfix">
             {% for item in properties %}
-            <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+            <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
                 <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="inner-box">
                         <div class="image-box">
@@ -65,7 +72,7 @@ Liste des biens
                                 </div>
                                 <ul class="other-option pull-right clearfix">
                                     <li>
-                                        {% set entryInfo = {
+                                        {# {% set entryInfo = {
                                             id: item.id,
                                             type: item.type,
                                             owner: item.owner,
@@ -76,16 +83,16 @@ Liste des biens
                                             country: item.country,
                                             postalCode: item.postalCode,
                                             surface: item.surface,
-                                        } %}
-                                        <a x-on:click="addTofav({{ entryInfo|json_encode }})">
+                                        } %} #}
+                                        <a href="{{ path('app_favourite_new', {'id': item.id }) }}">
                                             <i class="icon-13"></i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                            <p>
+                            {# <p>
                                 {{item.description}}
-                            </p>
+                            </p> #}
                             <ul class="more-details clearfix">
                                 <li>
                                     <i class="icon-10"></i>

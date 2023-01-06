@@ -1,112 +1,135 @@
-<section  x-data="handlerFav()" class="feature-section alternate-2 sec-pad">
+<section x-data="handlerFav()" class="feature-section alternate-2 sec-pad">
     <div class="auto-container">
         <div class="sec-title centred">
             <h5>
                 Biens
+                            
             </h5>
             <h2>
                 Quelques biens
+                            
             </h2>
             <p>
-                Retrouvez ci-dessous quelques biens, et amusez-vous.
+                Retrouvez ci-dessous quelques biens, et amusez-vous, ou
+                            
             </p>
+            <div class="centred mt-2">
+                <a href="{{ path('app_property_all') }}" class="theme-btn theme-btn-second btn-one">
+                    Voir tous les produits
+                </a>
+            </div>
         </div>
         <div class="row clearfix">
             {% for item in properties %}
-            <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
-                <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image">
-                                <img src="{{ asset('uploads/property_images/' ~ item.image) }}" alt="">
-                            </figure>
-                            <span class="category">
-                                <a class="text-white" href="{{ path('app_category_items', {'name': item.getCategoryId().libelle}) }}">{{ item.getCategoryId().libelle }}</a>
-                            </span>
-                        </div>
-                        <div class="lower-content">
-                            <div class="author-info clearfix">
-                                <div class="author pull-left">
-                                    <figure class="author-thumb">
-                                        <img src="{{ asset('front/images/feature/author-1.jpg') }}" alt="">
-                                    </figure>
-                                    <h6>
-                                        {{ item.owner }}
-                                    </h6>
-                                </div>
-                                <div class="buy-btn pull-right">
-                                    <a href="/">
-                                        {{ item.type }}
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="title-text">
-                                <h4>
-                                    <a href="/">
-                                        {{ item.title }}
-                                    </a>
-                                </h4>
-                            </div>
-                            <div class="price-box clearfix">
-                                <div class="price-info pull-left">
-                                    <h6>
-                                        Prix
-                                    </h6>
-                                    <h4>
-                                        {{ item.price | format_currency('EUR') }}
-                                    </h4>
-                                </div>
-                                <ul class="other-option pull-right clearfix">
-                                    <li>
-                                        {% set entryInfo = {
-                                            id: item.id,
-                                            type: item.type,
-                                            owner: item.owner,
-                                            image: asset('uploads/property_images/' ~ item.image),
-                                            category: item.getCategoryId().libelle,
-                                            title: item.title,
-                                            price: item.price,
-                                            country: item.country,
-                                            postalCode: item.postalCode,
-                                            surface: item.surface,
-                                        } %}
-                                        
-                                        <a x-on:click="addTofav({{ entryInfo|json_encode }})">
-                                            <i class="icon-13"></i>
+                <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+                    <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image">
+                                    <img src="{{ asset('uploads/property_images/' ~ item.image) }}" alt=""></figure>
+                                    <span class="category">
+                                        <a class="text-white" href="{{ path('app_category_items', {'name': item.getCategoryId().libelle}) }}">
+                                            {{ item.getCategoryId().libelle }}
                                         </a>
-                                    </li>
-                                </ul>
+                                    </span>
+                                </div>
+                                <div class="lower-content">
+                                    <div class="author-info clearfix">
+                                        <div class="author pull-left">
+                                            <figure class="author-thumb">
+                                                <img src="{{ asset('front/images/feature/author-1.jpg') }}" alt=""></figure>
+                                                <h6>
+                                                    {{ item.owner }}
+                                                </h6>
+                                            </div>
+                                            <div class="buy-btn pull-right">
+                                                <a href="/">
+                                                    {{ item.type }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="title-text">
+                                            <h4>
+                                                <a href="/">
+                                                    {{ item.title }}
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div class="price-box clearfix">
+                                            <div class="price-info pull-left">
+                                                <h6>
+                                                    Prix
+                                                                                            
+                                                </h6>
+                                                <h4>
+                                                    {{ item.price | format_currency('EUR') }}
+                                                </h4>
+                                            </div>
+                                            <ul class="other-option pull-right clearfix">
+                                                <li>{# {% set entryInfo = {
+                                                                                                id: item.id,
+                                                                                                type: item.type,
+                                                                                                owner: item.owner,
+                                                                                                image: asset('uploads/property_images/' ~ item.image),
+                                                                                                category: item.getCategoryId().libelle,
+                                                                                                title: item.title,
+                                                                                                price: item.price,
+                                                                                                country: item.country,
+                                                                                                postalCode: item.postalCode,
+                                                                                                surface: item.surface,
+                                                                                                } %} #}
+                                                {# <a href="{{ path('app_favourite_new', {'id': item.id }) }}">
+                                                                                                <i class="icon-13"></i>
+                                                                                            </a> #}
+                                                {# <a x-on:click="addTofav({{ entryInfo|json_encode }})">
+                                                                                                <i class="icon-13"></i>
+                                                                                            </a> #}
+                                            </li>
+                                        </ul>
+                                        </div>
+                                        {# <p>
+                                                                            {{ item. description }}
+                                                                        </p> #}
+                                            <ul class="more-details clearfix"> <li>
+                                                <i class="icon-10"></i>
+                                                {{ item.country }}
+                                            </li>
+                                            <li>
+                                                <i class="icon-12"></i>
+                                                {{ item.postalCode ? item.postalCode : '' }}
+                                            </li>
+                                            <li>
+                                                <i class="icon-16"></i>
+                                                {{ item.surface }}
+                                                m²
+                                                
+                                                                                    
+                                            </li>
+                                        </ul>
+                                        <hr>
+                                            <div class="other-info-box clearfix">
+                                                <div class="btn-box pull-left">
+                                                    <a href="{{ path('app_property_details', {'id': item.id }) }}" class="theme-btn-second">
+                                                        Détails
+                                                    </a>
+                                                </div>
+                                                <ul class="other-option pull-right clearfix">
+                                                    <li>
+                                                        <a href="{{ path('app_favourite_new', {'id': item.id }) }}">
+                                                            <i class="icon-13"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <p>
-                                {{ item. description }}
-                            </p>
-                            <ul class="more-details clearfix">
-                                <li>
-                                    <i class="icon-10"></i>
-                                    {{ item.country }}
-                                </li>
-                                <li>
-                                    <i class="icon-12"></i>
-                                    {{ item.postalCode ? item.postalCode : '' }}
-                                </li>
-                                <li>
-                                    <i class="icon-16"></i>
-                                    {{ item.surface }}
-                                    m²
-
-                                </li>
-                            </ul>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-
-<script>
+            </section>
+            <script>
     function handlerFav() {
         return {
             addTofav(item) {
@@ -115,7 +138,7 @@
                     favourites = JSON.parse(localStorage.getItem('favourites'));
                 }
                 let found = favourites.find((_item) => _item.id === item.id);
-                if(found){
+                if (found) {
                     toastr['warning']('Cet élement est déja enregistré en favoris 🛒', 'FAVORIS', {
                         closeButton: true,
                         tapToDismiss: true,
@@ -123,10 +146,10 @@
                         positionClass: "toast-bottom-left",
                     });
 
-                }else{
+                } else {
                     favourites.push(item);
                     localStorage.setItem('favourites', JSON.stringify(favourites))
-    
+
                     toastr['success']('Produit ajouté aux favoris 🛒', 'FAVORIS', {
                         closeButton: true,
                         tapToDismiss: true,
@@ -139,3 +162,4 @@
         }
     }
 </script>
+            

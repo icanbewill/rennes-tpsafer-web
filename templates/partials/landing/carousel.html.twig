@@ -1,6 +1,6 @@
-<section class="banner-section" style="background-image: url(front/images/banner/bannerx.jpg);">
-    <div class="auto-container">
-        <div class="inner-container">
+    <section class="banner-section" style="background-image: url(front/images/banner/bannerx.jpg);">
+        <div class="auto-container">
+            <div class="inner-container">
             <div class="content-box centred">
                 <h2>Bienvenue chez la SAFER</h2>
                 <p>Amet consectetur adipisicing elit sed do eiusmod.</p>
@@ -18,7 +18,7 @@
                                 <div class="top-search">
                                     {{ form_start(form, {'action': path('app_search'), 'method': 'POST', 'attr': {'class': 'search-form' }}) }}
                                     <div class="row clearfix">
-                                        <div class="col-lg-4 col-md-12 col-sm-12 column">
+                                        <div class="col-lg-3 col-md-12 col-sm-12 column">
                                             <div class="form-group">
                                                 <label>Bien recherché</label>
                                                 <div class="field-input">
@@ -27,7 +27,7 @@
                                             </div>
                                         </div>
                                         <!-- <input type="search" name="search-field" placeholder="Search by Property, Location or Landmark..." required=""> -->
-                                        <div class="col-lg-4 col-md-6 col-sm-12 column">
+                                        <div class="col-lg-3 col-md-6 col-sm-12 column">
                                             <div class="form-group">
                                                 <label>Localisation</label>
                                                 <div class="field-input">
@@ -35,7 +35,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-12 column">
+                                        <div class="col-lg-3 col-md-6 col-sm-12 column">
                                             <div class="form-group">
                                                 <label>Type</label>
                                                 <div class="field-select">
@@ -43,14 +43,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {# <div class="col-lg-3 col-md-12 col-sm-12 column">
+                                        <div class="col-lg-3 col-md-12 col-sm-12 column">
                                             <div class="form-group">
                                                 <label>Catégorie</label>
                                                 <div class="field-input">
                                                     {{ form_widget(form.categories, {'attr': {'class': 'form-select form-select-sm' }}) }}
                                                 </div>
                                             </div>
-                                        </div> #}
+                                        </div>
                                     </div>
                                     <div class="search-btn">
                                         <button type="submit" class="px-2"><i class="fas fa-search"></i>RECHERCHER</button>

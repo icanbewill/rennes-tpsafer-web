@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
@@ -68,6 +69,8 @@ class Property
     private $category_id;
 
     /**
+     * @var \DateTimeImmutable $createdAt
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
@@ -78,6 +81,8 @@ class Property
     private $addedBy;
 
     /**
+     * @var \DateTimeImmutable $updatedAt
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
@@ -96,6 +101,11 @@ class Property
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $owner;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $reference;
     
 
     public function __construct()
@@ -326,6 +336,18 @@ class Property
     public function setOwner(?string $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
 
         return $this;
     }

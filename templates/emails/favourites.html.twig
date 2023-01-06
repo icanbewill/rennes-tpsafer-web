@@ -1,55 +1,40 @@
-<container>
-    {# Header #}
-    <hr>
-        <spacer size="20"></spacer>
-        <row>
-            <columns>
-                <p>
-                    Bonjour
-                                                        
-                                    
-                </p>
-            </columns>
-        </row>
-        <row>
-            <columns>
-                <table>
-                    <tr>
-                        <th>
-                            #
-                                                                                
-                                                    
-                        </th>
-                        <th>
-                            Titre
-                                                                                
-                                                    
-                        </th>
-                        <th>
-                            Prix                       
-                                                    
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            1
-                                                                                
-                                                    
-                        </td>
-                        <td>
-                            Article Title
-                                                                                
-                                                    
-                        </td>
-                        <td>
-                            99
-                                                                                
-                                                    
-                        </td>
-                    </tr>
-                </table>
-            </columns>
-        </row>
-    {# Footer #}
-    </container>
-    
+{% extends 'layouts/emails.html.twig' %}
+{% block body %}
+<p style="line-height: 24px; margin-bottom:15px;">
+    Bonjour,
+</p>
+<p style="line-height: 24px;margin-bottom:15px;">
+    {{ message }}
+</p>
+<p>
+<table>
+    <thead>
+        <th>#</th>
+        <th>Titre</th>
+        <th>Prix</th>
+        <th>Surface</th>
+        <th>Localisation</th>
+        <th>Autre</th>
+    </thead>
+    <tbody>
+        {% for item in properties %}
+        <tr>
+            <td> {{loop.index}} </td>
+            <td> {{item.getBienId().title}} </td>
+            <td> {{item.getBienId().price |format_currency('EUR') }} </td>
+            <td> {{item.getBienId().surface}} m² </td>
+            <td> {{item.getBienId().country}} - {{item.getBienId().postalCode}} </td>
+            <td> <a href="http://" target="_blank">VOIR</a> </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</p>
+<br>
+<br>
+<p style="line-height: 24px">
+    Cordialement,
+    </br>
+    La SAFER
+
+</p>{% endblock %}
