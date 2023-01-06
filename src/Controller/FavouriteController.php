@@ -31,10 +31,10 @@ class FavouriteController extends AbstractController
     /**
      * @Route("/favourite", name="app_favourite_index", methods={"GET"})
      */
-    public function index(FavouriteRepository $favouriteRepository): Response
+    public function index(): Response
     {
         return $this->render('views/favourite/index.html.twig', [
-            'favourites' => $favouriteRepository->findAll(),
+            'favourites' => $this->favouriteRepository->findBy(array('isSent' => false)),
         ]);
     }
 
