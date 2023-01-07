@@ -41,16 +41,11 @@ class Category
      */
     private $properties;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Bien::class, mappedBy="category_id", cascade={"remove"})
-     */
-    private $biens;
 
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->properties = new ArrayCollection();
-        $this->biens = new ArrayCollection();
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
@@ -127,36 +122,6 @@ class Category
             // set the owning side to null (unless already changed)
             if ($property->getCategoryId() === $this) {
                 $property->setCategoryId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Bien>
-     */
-    public function getBiens(): Collection
-    {
-        return $this->biens;
-    }
-
-    public function addBien(Bien $bien): self
-    {
-        if (!$this->biens->contains($bien)) {
-            $this->biens[] = $bien;
-            $bien->setCategoryId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBien(Bien $bien): self
-    {
-        if ($this->biens->removeElement($bien)) {
-            // set the owning side to null (unless already changed)
-            if ($bien->getCategoryId() === $this) {
-                $bien->setCategoryId(null);
             }
         }
 

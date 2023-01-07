@@ -26,6 +26,7 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * Ajout d'une catégorie
      * @Route("/new", name="app_category_new", methods={"GET", "POST"})
      */
     public function new(Request $request, CategoryRepository $categoryRepository): Response

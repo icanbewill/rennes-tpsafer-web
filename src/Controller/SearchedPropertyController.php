@@ -23,6 +23,10 @@ class SearchedPropertyController extends AbstractController
     }
 
     /**
+     * Cette méthode permet d'enregistrer une recherche particulière d'un utilisaeteur, 
+     * pour se faire prévenir quand un bien est disponible
+     * 
+     * 
      * @Route("/searchproperty", name="app_searched_property_new", methods={"GET", "POST"})
      */
     public function new(Request $request, SearchedPropertyRepository $searchedPropertyRepository): Response

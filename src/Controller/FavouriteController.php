@@ -26,6 +26,7 @@ class FavouriteController extends AbstractController
     }
 
     /**
+     * Récupère toutes les propriétés favoris non envoyées en utilisant la classe PropertyRepository et les affiche dans le template views/property/index.html.twig.
      * @Route("/favourite", name="app_favourite_index", methods={"GET"})
      */
     public function index(): Response
@@ -37,10 +38,6 @@ class FavouriteController extends AbstractController
 
     /**
      * @Route("/my-favourites", name="app_favourite_list", methods={"GET", "POST"})
-     */
-    /**
-     * Affichage de la liste des favoris de l'utilisateur
-     *  On vérifie si une session existe, et on affiche les biens correspondants. Si non, on renvoie un formulaire pour que l'utilisateur se crée une session
      */
     public function list(Request $request): Response
     {
@@ -79,7 +76,7 @@ class FavouriteController extends AbstractController
     {
         $session = $request->getSession();
         $userMail = $session->get('email');
-        if($userMail){
+        if ($userMail) {
             $favourites = $this->favouriteRepository->findBy(array('email' => $userMail, 'isSent' => false));
             try {
                 $email = (new TemplatedEmail())
@@ -108,7 +105,7 @@ class FavouriteController extends AbstractController
                 dd($th);
             }
         }
-        
+
         return $this->redirectToRoute('app_favourite_list', [], Response::HTTP_SEE_OTHER);
     }
 

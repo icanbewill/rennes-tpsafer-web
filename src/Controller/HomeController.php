@@ -10,10 +10,13 @@ use App\Repository\PropertyRepository;
 use ContainerAgr3dtg\PaginatorInterface_82dac15;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class HomeController extends AbstractController
 {
@@ -37,7 +40,7 @@ class HomeController extends AbstractController
         $result = $statement->execute()->fetchAll();
 
         $properties = [];
-        
+
         foreach ($result as $key => $value) {
             $property = new Property();
             $property->setId($value['id']);
@@ -92,11 +95,41 @@ class HomeController extends AbstractController
         $form = $this->createForm(SearchDataForm::class, $data);
         $form->handleRequest($request);
         $properties = $repository->findSearch($data);
-        // dd($properties);
         return $this->render('landing/properties.html.twig', [
             'view' => 'filter',
             'properties' => $properties,
             'form' => $form->createView()
         ]);
+    }
+    /**
+     * Gestion du formulaire de contact
+     * @Route("/contact", name="app_contact")
+     */
+    public function contact(Request $request, MailerInterface $mailer)
+    {
+        try {
+            $email = (new TemplatedEmail())
+                ->from($request->request->get('email'))
+                ->to('safer@example.com')
+                ->subject($request->request->get('subject'))
+                ->htmlTemplate('emails/contact.html.twig')
+                ->context([
+                    'message' => $request->request->get('message'),
+                    'phone' => $request->request->get('phone'),
+                    'username' => $request->request->get('username')
+                ]);
+            $mailer->send($email);
+
+            $this->addFlash(
+                'success',
+                'Mail envoyé avec succès !'
+            );
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th);
+        }
+
+        
+        return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
 }

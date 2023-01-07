@@ -97,8 +97,11 @@ class UserController extends AbstractController
             $userRepository->add($user, true);
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-            
-            // $user->setPassword($hashedPassword);
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $user,
+                $form['password']->getData()
+            );
+            $user->setPassword($hashedPassword);
             $user->setRoles(array('ROLE_ADMIN'));
             $this->em->persist($user);
             $this->em->flush();

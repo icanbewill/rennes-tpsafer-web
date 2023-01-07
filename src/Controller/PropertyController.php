@@ -34,6 +34,10 @@ class PropertyController extends AbstractController
 
 
     /**
+     * La méthode index récupère toutes les propriétés en utilisant la classe 
+     * PropertyRepository et les affiche dans le template views/property/index.html.twig
+     * 
+     * 
      * @Route("/", name="app_property_index", methods={"GET"})
      */
     public function index(PropertyRepository $propertyRepository): Response
@@ -43,7 +47,12 @@ class PropertyController extends AbstractController
         ]);
     }
     /**
-     * Retourner la liste des biens sur la landing page
+     * La méthode properties récupère toutes les propriétés et les catégories en 
+     * utilisant les classes PropertyRepository et CategoryRepository 
+     * et les affiche dans le template landing/property/all.html.twig. 
+     * Elle crée également et gère un formulaire de recherche de propriétés.
+     * 
+     * 
      * @Route("/all", name="app_property_all", methods={"GET"})
      */
     public function properties(Request $request, PropertyRepository $propertyRepository, CategoryRepository $categoryRepository): Response
@@ -61,6 +70,13 @@ class PropertyController extends AbstractController
     }
 
     /**
+     * La méthode new permet à un utilisateur de créer une nouvelle propriété en 
+     * gérant la soumission d'un formulaire. Elle gère également les téléchargements 
+     * de fichiers pour l'image de la propriété et vérifie s'il y a des utilisateurs 
+     * qui recherchent actuellement des propriétés qui correspondent à la nouvelle 
+     * propriété créée. Si c'est le cas, elle envoie un email à ces utilisateurs.
+     * 
+     * 
      * @Route("/new", name="app_property_new", methods={"GET", "POST"})
      */
     public function new(Request $request, PropertyRepository $propertyRepository, SluggerInterface $slugger, SearchedPropertyRepository $searchedPropertyRepository): Response
@@ -69,7 +85,7 @@ class PropertyController extends AbstractController
         $property = new Property();
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $searchedProperties = $searchedPropertyRepository->findByFilter($property);
             $propertyRepository->add($property, true);
@@ -98,8 +114,7 @@ class PropertyController extends AbstractController
                 $property->setImage($newFilename);
             }
 
-            if(count($searchedProperties)){
-
+            if (count($searchedProperties)) {
             }
 
             $this->addFlash(
