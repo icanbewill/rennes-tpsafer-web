@@ -19,7 +19,7 @@ class Favourite
 
     /**
      * @ORM\ManyToOne(targetEntity=Property::class, inversedBy="favourites", fetch="EAGER")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $bien_id;
 

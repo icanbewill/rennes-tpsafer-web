@@ -23,6 +23,12 @@ class SearchedPropertyRepository extends ServiceEntityRepository
         parent::__construct($registry, SearchedProperty::class);
     }
 
+    
+    public function findAll()
+    {
+        return $this->findBy(array(), array('id' => 'DESC'));
+    }
+
     public function add(SearchedProperty $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

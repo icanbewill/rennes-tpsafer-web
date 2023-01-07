@@ -25,6 +25,11 @@ class PropertyRepository extends ServiceEntityRepository
         parent::__construct($registry, Property::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('id' => 'DESC'));
+    }
+
     public function add(Property $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -72,7 +77,7 @@ class PropertyRepository extends ServiceEntityRepository
 
     private function getSearchQuery(SearchData $search, $ignorePrice = false): QueryBuilder
     {
-        // dd($search->categories);
+        // dd($search->categories->getId());
         $query = $this
             ->createQueryBuilder('p')
             ->select('c', 'p')
@@ -117,8 +122,8 @@ class PropertyRepository extends ServiceEntityRepository
 
         if (!empty($search->categories)) {
             $query = $query
-                ->andWhere('c.libelle = :cat')
-                ->setParameter('cat', $search->categories);
+                ->andWhere('c.id = :cat')
+                ->setParameter('cat', $search->categories->getId());
         }
 
         // if (!empty($search->categories)) {

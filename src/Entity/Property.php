@@ -93,7 +93,7 @@ class Property
     private $galleries;
 
     /**
-     * @ORM\OneToMany(targetEntity=Favourite::class, mappedBy="bien_id")
+     * @ORM\OneToMany(targetEntity=Favourite::class, mappedBy="bien_id", cascade={"remove"})
      */
     private $favourites;
 

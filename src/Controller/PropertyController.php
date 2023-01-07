@@ -87,8 +87,8 @@ class PropertyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $searchedProperties = $searchedPropertyRepository->findByFilter($property);
-            $propertyRepository->add($property, true);
+            // $searchedProperties = $searchedPropertyRepository->findByFilter($property);
+            $propertyRepository->add($property, false);
 
             $uploadedFile = $form['imageFile']->getData();
             if ($uploadedFile) {
@@ -114,8 +114,8 @@ class PropertyController extends AbstractController
                 $property->setImage($newFilename);
             }
 
-            if (count($searchedProperties)) {
-            }
+            // if (count($searchedProperties)) {
+            // }
 
             $this->addFlash(
                 'success',
@@ -123,6 +123,7 @@ class PropertyController extends AbstractController
             );
 
             $property->setAddedBy($user);
+            $property->setReference($this->generateRandomString());
             $this->em->persist($property);
             $this->em->flush();
 
@@ -133,6 +134,18 @@ class PropertyController extends AbstractController
             'property' => $property,
             'form' => $form,
         ]);
+    }
+
+    /** Génération de référence aléatoire */
+    public function generateRandomString($length = 8)
+    {
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
     /**

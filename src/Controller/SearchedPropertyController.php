@@ -52,6 +52,7 @@ class SearchedPropertyController extends AbstractController
     }
 
     /**
+     * Affiachage des details d'un bien recherché
      * @Route("/searched/property/{id}", name="app_searched_property_show", methods={"GET"})
      */
     public function show(SearchedProperty $searchedProperty): Response
@@ -62,6 +63,7 @@ class SearchedPropertyController extends AbstractController
     }
 
     /**
+     * Modification d'un bien recherché
      * @Route("/searched/property/{id}/edit", name="app_searched_property_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, SearchedProperty $searchedProperty, SearchedPropertyRepository $searchedPropertyRepository): Response
