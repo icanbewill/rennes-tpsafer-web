@@ -118,12 +118,11 @@ Dashboard
     </div>
 
     <div class="row match-height">
-        <div class="mx-2 mt-2 mb-1">
-            <h3>TOP 5 DES BIENS FAVORIS</h3>
-        </div>
-        <span class="divider"></span>
-        <!-- Company Table Card -->
-        <div class="col-lg-12 col-12">
+        <div class="col-lg-6 col-12">
+            <div class="mx-2 mt-2 mb-1">
+                <h3>TOP 5 DES BIENS FAVORIS</h3>
+            </div>
+            <hr>
             <div class="card card-company-table">
                 <div class="card-body p-0">
                     <div class="table-responsive">
@@ -135,7 +134,7 @@ Dashboard
                                     <th>Surface</th>
                                     <th>Prix</th>
                                     <th>Type</th>
-                                    <th>Porteur</th>
+                                    <th>Nbr</th>
                                 </tr>
                             </thead>
                             {% for property in properties %}
@@ -145,7 +144,7 @@ Dashboard
                                 <td>{{ property.surface }} m²</td>
                                 <td>{{ property.price | format_currency('EUR') }}</td>
                                 <td>{{ property.type }}</td>
-                                <td>{{ property.owner }}</td>
+                                <td>{{ property.count }}</td>
                             </tr>
                             {% else %}
                             <tr>
@@ -157,8 +156,38 @@ Dashboard
                 </div>
             </div>
         </div>
-        <!--/ Company Table Card -->
-
+        <div class="col-lg-6 col-12">
+            <div class="mx-2 mt-2 mb-1">
+                <h3>TOP 5 DES CATEGORIES FAVORIES</h3>
+            </div>
+            <hr>
+            <div class="card card-company-table">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Libelle</th>
+                                    <th>Nbr</th>
+                                </tr>
+                            </thead>
+                            {% for category in categories %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ category.libelle }}</td>
+                                <td>{{ category.count }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="11">no records found</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
