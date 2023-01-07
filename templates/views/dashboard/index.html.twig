@@ -140,7 +140,7 @@ Dashboard
                             {% for property in properties %}
                             <tr>
                                 <td>{{ loop.index }}</td>
-                                <td>{{ property.title }}</td>
+                                <td><a class="text-uppercase" href="{{ path('app_property_show', {'id': property.id}) }}">{{ property.title }}</a></td>
                                 <td>{{ property.surface }} m²</td>
                                 <td>{{ property.price | format_currency('EUR') }}</td>
                                 <td>{{ property.type }}</td>
