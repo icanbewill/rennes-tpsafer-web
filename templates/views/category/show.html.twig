@@ -1,58 +1,30 @@
 {% extends 'layouts/dashboard.html.twig' %}
 
-{# {% block title %}
-    Modifier une catégorie
-    
-{% endblock %}
-
-{% block body %}
-    <div class="content-header row mb-2">
-        <div class="d-flex">
-            <a href="{{ path('app_category_index') }}" class="mx-2 btn btn-secondary mb-1">
-                Retour                 
-            </a>
-
-            {{ include('views/category/_delete_form.html.twig') }}
-        </div>
-    </div>
-    <div class="content-body">
-        {{ include('views/category/_form.html.twig', {'button_label': 'Modifier'}) }}
-    {% endblock %}
-     #}
-
 {% block title %}
-    Categorie
+Categorie
 {% endblock %}
 
 {% block body %}
-    <h1>
-        Categorie
-    </h1>
-    <div class="content-header row mb-2">
-        <div class="d-flex">
-            <a href="{{ path('app_category_index') }}" class="mx-2 btn btn-secondary mb-1">
-                Retour                 
-                            
-            </a>
+<h3 class="mx-1">
+    Categorie
+</h3>
+<hr>
+<div class="content-header row mb-2">
+    <div class="d-flex">
+        <a href="{{ path('app_category_index') }}" class="mx-2 btn btn-sm btn-secondary mb-1">
+            Retour
+        </a>
+        <a class="mr-2 btn btn-sm btn-warning mb-1" href="{{ path('app_category_edit', {'id': category.id}) }}">
+            Modifier
+        </a>
 
-            <a class="mr-2 btn btn-warning mb-1" href="{{ path('app_category_edit', {'id': category.id}) }}">
-                Modifier
-            </a>
-
-            {{ include('views/category/_delete_form.html.twig') }}
-        </div>
+        {{ include('views/category/_delete_form.html.twig') }}
     </div>
+</div>
 
+<div class="card">
     <table class="table">
         <tbody>
-            <tr>
-                <th>
-                    Id
-                </th>
-                <td>
-                    {{ category.id }}
-                </td>
-            </tr>
             <tr>
                 <th>
                     Libelle
@@ -63,20 +35,53 @@
             </tr>
             <tr>
                 <th>
-                    CreatedAt
+                    Date d'ajout
                 </th>
                 <td>
                     {{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}
                 </td>
             </tr>
-            <tr>
-                <th>
-                    UpdatedAt
-                </th>
-                <td>
-                    {{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}
-                </td>
-            </tr>
         </tbody>
     </table>
+</div>
+
+<div class="card mt-2">
+    <div class="card-header"><h3>Liste des biens de cette catégorie</h3></div>
+    <div class="card-body">
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Titre</th>
+                    <th>Surface</th>
+                    <th>Prix</th>
+                    <th>Type</th>
+                    <th>Porteur</th>
+                    <th>Ajouté le</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for property in category.properties %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ property.title }}</td>
+                    <td>{{ property.surface }} m²</td>
+                    <td>{{ property.price | format_currency('EUR') }}</td>
+                    <td>{{ property.type }}</td>
+                    <td>{{ property.owner }}</td>
+                    <td>{{ property.createdAt ? property.createdAt|date('d-m-Y') : '' }}</td>
+                    <td>
+
+                        <a class="btn btn-sm btn-success"
+                            href="{{ path('app_property_show', {'id': property.id}) }}">Voir</a>
+                        <a class="btn btn-sm btn-warning"
+                            href="{{ path('app_property_edit', {'id': property.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

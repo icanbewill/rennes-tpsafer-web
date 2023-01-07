@@ -17,12 +17,12 @@ Mes favoris
             </ul> <br>
             {% set email = app.session.get('email') %}
             {% if email and (properties | length > 0) %}
-                <a href="{{path('app_favourite_mail')}}" class="theme-btn theme-btn-second btn-one btn-sm text-uppercase">
-                    <span></span>
-                    Me les envoyer par mail
-                </a>
+            <a href="{{path('app_favourite_mail')}}" class="theme-btn theme-btn-second btn-one btn-sm text-uppercase">
+                <span></span>
+                Me les envoyer par mail
+            </a>
             {% endif %}
-            
+
         </div>
     </div>
 </section>
@@ -122,6 +122,15 @@ Mes favoris
                     </div>
                 </div>
             </div>
+            {% else %}
+            <section class="subscribe-section mx-auto">
+                <div class="text-column px-2">
+                    <div class="text">
+                        <span>AUCUN ELEMENT</span>
+                        <h2 class="text-dark">Veuillez rajouter des produits en favoris pour les retrouver ici !</h2>
+                    </div>
+                </div>
+            </section>
             {% endfor %}
         </div>
     </div>

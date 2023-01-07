@@ -129,7 +129,18 @@ class HomeController extends AbstractController
             dd($th);
         }
 
-        
+
+        return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * Suppression de la session en cours
+     * @Route("/remove-session", name="app_remove_session")
+     */
+    public function removeSession(Request $request)
+    {
+        $session = $request->getSession();
+        $session->clear();
         return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
 }
