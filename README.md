@@ -29,5 +29,5 @@ php bin/console doctrine:migrations:migrate
 ```
 symfony serve
 ```
-7. C'est pas très important, mais vous pouvez vous abonner à
-[ICANBEWILL](https://github.com/icanbewill)
+7. Lien vers la vidéo démo
+[DEMO](https://screenapp.io/#/shared/a2503f8c-d911-4583-be68-683af0495a05)
