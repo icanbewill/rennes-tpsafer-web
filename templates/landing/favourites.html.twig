@@ -28,100 +28,100 @@ Mes favoris
 </section>
 <!--End Page Title-->
 <div>
-    <div class="container my-4 mx-2">
-        <div class="row">
+    <div class="my-4 mx-2">
+        <div class="row row-flex">
             {% for item in properties %}
-            <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
-                <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image">
-                                <img src="{{ asset('uploads/property_images/' ~ item.getBienId().image) }}" alt="">
-                            </figure>
-                            <span class="category">
-                                <a class="text-white"
-                                    href="{{ path('app_category_items', {'name': item.getBienId().getCategoryId().libelle}) }}">{{
-                                    item.getBienId().getCategoryId().libelle }}</a>
-                            </span>
-                        </div>
-                        <div class="lower-content">
-                            <div class="author-info clearfix">
-                                <div class="author pull-left">
-                                    <figure class="author-thumb">
-                                        <img src="{{ asset('front/images/feature/author-1.jpg') }}" alt="">
-                                    </figure>
-                                    <h6>
-                                        {{ item.getBienId().owner }}
-                                    </h6>
-                                </div>
-                                <div class="buy-btn pull-right">
-                                    <a href="/">
-                                        {{ item.getBienId().type }}
-                                    </a>
-                                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 feature-block mb-2">
+                    <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image">
+                                    <img src="{{ asset('uploads/property_images/' ~ item.getBienId().image) }}" alt="">
+                                </figure>
+                                <span class="category">
+                                    <a class="text-white"
+                                        href="{{ path('app_category_items', {'name': item.getBienId().getCategoryId().libelle}) }}">{{
+                                        item.getBienId().getCategoryId().libelle }}</a>
+                                </span>
                             </div>
-                            <div class="title-text">
-                                <h4>
-                                    <a href="/">
-                                        {{ item.getBienId().title }}
-                                    </a>
-                                </h4>
-                            </div>
-                            <div class="price-box clearfix">
-                                <div class="price-info pull-left">
-                                    <h6>
-                                        Prix
-                                    </h6>
+                            <div class="lower-content">
+                                <div class="author-info clearfix">
+                                    <div class="author pull-left">
+                                        <figure class="author-thumb">
+                                            <img src="{{ asset('front/images/feature/author-1.jpg') }}" alt="">
+                                        </figure>
+                                        <h6>
+                                            {{ item.getBienId().owner }}
+                                        </h6>
+                                    </div>
+                                    <div class="buy-btn pull-right">
+                                        <a href="/">
+                                            {{ item.getBienId().type }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="title-text">
                                     <h4>
-                                        {{ item.getBienId().price | format_currency('EUR') }}
+                                        <a href="/">
+                                            {{ item.getBienId().title }}
+                                        </a>
                                     </h4>
                                 </div>
-                                {# <ul class="other-option pull-right clearfix">
-                                    <li>
+                                <div class="price-box clearfix">
+                                    <div class="price-info pull-left">
+                                        <h6>
+                                            Prix
+                                        </h6>
+                                        <h4>
+                                            {{ item.getBienId().price | format_currency('EUR') }}
+                                        </h4>
+                                    </div>
+                                    {# <ul class="other-option pull-right clearfix">
+                                        <li>
 
-                                        <a class="bg-danger"
-                                            href="{{ path('app_favourite_remove', {'id': item.id }) }}">
-                                            <i class="icon-13"></i>
-                                        </a>
-                                    </li>
-                                </ul> #}
-                            </div>
-                            {# <p>
-                                {{ item.getBienId().description }}
-                            </p> #}
-                            <ul class="more-details clearfix">
-                                <li>
-                                    <i class="icon-10"></i>
-                                    {{ item.getBienId().country }}
-                                </li>
-                                <li>
-                                    <i class="icon-12"></i>
-                                    {{ item.getBienId().postalCode ? item.getBienId().postalCode : '' }}
-                                </li>
-                                <li>
-                                    <i class="icon-16"></i>
-                                    {{ item.getBienId().surface }}
-                                    m²
-
-                                </li>
-                            </ul>
-
-                            <hr>
-                            <div class="other-info-box clearfix">
-                                <div class="btn-box pull-left">
-                                    <a href="{{ path('app_property_details', {'id': item.getBienId().id }) }}"
-                                        class="theme-btn-second">Détails</a>
+                                            <a class="bg-danger"
+                                                href="{{ path('app_favourite_remove', {'id': item.id }) }}">
+                                                <i class="icon-13"></i>
+                                            </a>
+                                        </li>
+                                    </ul> #}
                                 </div>
-                                <ul class="other-option pull-right clearfix">
-                                    <li><a class="text-danger"
-                                            href="{{ path('app_favourite_remove', {'id': item.id }) }}"><i
-                                                class="icon-13"></i></a></li>
+                                {# <p>
+                                    {{ item.getBienId().description }}
+                                </p> #}
+                                <ul class="more-details clearfix">
+                                    <li>
+                                        <i class="icon-10"></i>
+                                        {{ item.getBienId().country }}
+                                    </li>
+                                    <li>
+                                        <i class="icon-12"></i>
+                                        {{ item.getBienId().postalCode ? item.getBienId().postalCode : '' }}
+                                    </li>
+                                    <li>
+                                        <i class="icon-16"></i>
+                                        {{ item.getBienId().surface }}
+                                        m²
+
+                                    </li>
                                 </ul>
+
+                                <hr>
+                                <div class="other-info-box clearfix">
+                                    <div class="btn-box pull-left">
+                                        <a href="{{ path('app_property_details', {'id': item.getBienId().id }) }}"
+                                            class="theme-btn-second">Détails</a>
+                                    </div>
+                                    <ul class="other-option pull-right clearfix">
+                                        <li><a class="text-danger"
+                                                href="{{ path('app_favourite_remove', {'id': item.id }) }}"><i
+                                                    class="icon-13"></i></a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             {% else %}
             <section class="subscribe-section mx-auto">
                 <div class="text-column px-2">
